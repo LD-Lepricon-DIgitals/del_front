@@ -1,0 +1,16 @@
+:root {
+    --border: 50%; 
+    --padding-x: 10px;
+    --padding-y: 10px 
+
+}
+
+.button {
+    padding: var(--padding-y) var(--padding-x);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: var(--border);
+    min-width: 70px;
+}
