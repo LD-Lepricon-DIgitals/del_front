@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.navi {
+    width: 85vw;
+    height: 110px;
+    background-color: #3E4D14D9;
+    border: 1px;
+    border-radius: 55.5px;
+    position: absolute;
+    transform: translateX(-50%);
+    top: -15px;
+    left: 50%;
+}
+.menu-button {
+    --border: 53px;
+    --padding-y: 15px;
+    --padding-x: 22px;
+}
+.navi-font{
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #414040;
+    font-size: xx-large;
+}
+.search-pannel {
+    background-color: #FFFFFF;
+    width: 65%;
+    height: 70px;
+    border-radius: 48.5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-basis: 100%;
+}
+.navigation-content {
+    margin-top: 24px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    gap: 10px;
+    max-height: 70px;
+}
+.menu-buttons {
+    display: flex;
+    align-self: center;
+    gap: 15px;
+    max-height: 70px;
+}
+
+ .search-input {
+    margin-left: 15px; 
+    height: 60%;
+    width: 85%;
+    flex-basis: 100%;
+}
+@media screen and (max-width: 700px) {
+    .navi{
+        width: 100%;
+        border-radius: 15px;
+    }
+}
