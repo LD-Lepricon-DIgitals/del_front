@@ -3,9 +3,7 @@ import Navbar from "./components/navigation/navigation"
 
 function Main() {
     return(
-        <div>
             <Navbar />
-        </div>
         
     );
 }
