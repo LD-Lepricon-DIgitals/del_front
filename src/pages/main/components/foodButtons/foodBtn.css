@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+
+.layout {
+    margin-left: 90px;
+    margin-top: 491px;
+}
+
+.layout-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.food-btn {
+    cursor: pointer;
+    width: 150px;
+    height: 210px;
+    border-radius: 32px;
+    background-color: #CCD770;
+    margin-right: 43px;
+    margin-bottom: 37px;
+    font-family: Rowdies;
+    font-style: regular;
+    font-size: 24px;
+}
+
+.btn-content{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px;
+}
+
+.rowdies-regular {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+  
