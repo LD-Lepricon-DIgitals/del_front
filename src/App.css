@@ -1,3 +1,15 @@
+:root {
+  --icons-size: 30px;
+  --mobile-scale: 550px;
+  --main-color: #FFEDBF;
+  /* color for navigation and other secondary elements of pages */
+  --secondary-color: #3E4D14D9;
+  
+}
+.ico {
+  width: var(--icons-size);
+  height: var(--icons-size);
+}
 
 
 .App {

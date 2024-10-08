@@ -1,16 +1,19 @@
 :root {
     --border: 50%; 
     --padding-x: 10px;
-    --padding-y: 10px 
-
+    --padding-y: 10px;
+    --b--height: 100%;
+    --display: flex;
 }
 
 .button {
+    aspect-ratio: 1 / 1;
     padding: var(--padding-y) var(--padding-x);
-    display: flex;
+    height: var(--b--height);
+    width: var(--b-width);
+    display: var(--display);
     justify-content: center;
     align-items: center;
     background-color: #fff;
     border-radius: var(--border);
-    min-width: 70px;
 }
