@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Cart() {
     return(
-        <div><Link to="/" ><Button><img className="ico" src={HomeIco} alt="dom, kotorogo net" /></Button></Link></div>
+        <div><Link to="/" ><Button><img className="ico" src={HomeIco} alt="Home page" /></Button></Link></div>
     );
 }
 
