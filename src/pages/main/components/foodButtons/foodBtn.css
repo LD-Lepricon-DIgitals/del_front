@@ -1,41 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
 
-.layout {
-    margin-left: 90px;
-    margin-top: 491px;
+:root {
+    --food-btn-height: 200px;
+    --food-ico-width: 100px;
+    --food-ico-height: 100px;
+    --food-border-radius: 32px;
+    --food-btn-font: x-large;
 }
-
+.food-btn-font {
+    font-family: "Rowdies", sans-serif;
+    font-size: var(--food-btn-font);
+    font-weight: 400;
+    font-style: normal;
+}
+.food-ico {
+    width:var(--food-ico-width);
+    height: var(--food-ico-height);
+}
 .layout-row {
+    margin-top: 5%;
+    max-width: calc(5/7 * var(--food-btn-height) * 3 + 60px); /* максимум 3 кнопки в ряду*/
+    min-width: 25%;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap; /* Позволяет дочерним элементам переноситься на следующую строку */
+    gap: 20px;
 }
 
 .food-btn {
     cursor: pointer;
-    width: 150px;
-    height: 210px;
-    border-radius: 32px;
+    height: var(--food-btn-height);
+    aspect-ratio: 5/7;
+    border-radius: var(--food-border-radius); 
     background-color: #CCD770;
-    margin-right: 43px;
-    margin-bottom: 37px;
-    font-family: Rowdies;
-    font-style: regular;
-    font-size: 24px;
 }
 
 .btn-content{
     display: flex; 
     flex-direction: column;
-    justify-content: center; 
+    justify-content: space-between; 
     align-items: center; 
-    margin-top: 20px;
 }
 
-.rowdies-regular {
-    font-family: "Rowdies", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+@media screen and (max-width: 1000px) {
+   :root{
+        --food-btn-height: 150px;
+        --food-ico-width: 50px;
+        --food-ico-height: 50px;
+        --food-btn-font: medium;
+   }
+}
+@media screen and (max-width: 800px) {
+    :root{
+         --food-border-radius: 25px;
+         --food-btn-height: 120px;
+         --food-ico-width: 40px;
+         --food-ico-height: 40px;
+         --food-btn-font: small;
+    }
+}
+
 
 
   
