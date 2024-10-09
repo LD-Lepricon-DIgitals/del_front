@@ -53,8 +53,8 @@
     :root{
          --food-border-radius: 25px;
          --food-btn-height: 120px;
-         --food-ico-width: 40px;
-         --food-ico-height: 40px;
+         --food-ico-width: 50px;
+         --food-ico-height: 50px;
          --food-btn-font: small;
     }
 }
