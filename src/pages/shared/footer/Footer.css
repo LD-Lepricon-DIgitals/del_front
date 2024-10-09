@@ -1,0 +1,10 @@
+.footer{
+    margin-top: 5vh;
+    width: 100%;
+    height: 10%;
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    position: relative; /* Обычное позиционирование */
+    display: flex;
+    justify-content: center;
+}

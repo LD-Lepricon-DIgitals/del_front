@@ -1,15 +1,15 @@
 import "./navigation.css"
-import useClickOutside from "../../../../hooks/useClickOutside";
-import useWindowWidth from "../../../../hooks/useWindowWidth.js";
+import useClickOutside from "../../../hooks/useClickOutside.js";
+import useWindowWidth from "../../../hooks/useWindowWidth.js";
 import {React, useState, useRef, useEffect } from "react";
-import Button from "../../../shared/NavigationButton/Button.jsx";
-import DropDownMenu from "../DropDownMenu/drop_menu";
+import Button from "../NavigationButton/Button.jsx";
+import DropDownMenu from "../../main/components/DropDownMenu/drop_menu.jsx";
 import { Link } from "react-router-dom";
-import UserIco from  "../../../shared/icons/User_ico.svg"
-import CartIco from  "../../../shared/icons/Cart_ico.svg"
-import SearchIco from  "../../../shared/icons/Search_ico.svg"
-import ListIco from  "../../../shared/icons/TEMP_List_ico.svg"
-import Clear from "../../../shared/icons/Clear_ico.svg"
+import UserIco from  "../icons/User_ico.svg"
+import CartIco from  "../icons/Cart_ico.svg"
+import SearchIco from  "../icons/Search_ico.svg"
+import ListIco from  "../icons/TEMP_List_ico.svg"
+import Clear from "../icons/Clear_ico.svg"
 
 function Navigation(){
     const [isDropOpen, setIsDropOpen] = useState(false);
