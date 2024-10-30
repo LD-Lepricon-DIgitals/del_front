@@ -3,9 +3,12 @@ import styles from './RegisterForm.module.css';
 import TextInput from '../../Inputs/TextInput/TextInput.jsx';
 import PasswordInput from '../../Inputs/PasswordInput/PasswordInput.jsx';
 import useForm from '../../../../hooks/useForm.js';
+import {ValidateLoginInput, ValidateRegisterInput} from './ValidateInputs.js'
+import { LoginUser, RegisterUser } from '../../../../api/UserServises.js';
 
 function RegistrationForm() {
     const [isRegistering, setIsRegistering] = useState(true);
+    const [validationError, setValidationError] = useState(null);
 
     const initialValues = {
         surname: '',
@@ -15,13 +18,47 @@ function RegistrationForm() {
         phone_number: '',
         password: '',
         submit_password: '',
+        personal_data_allow: false
     };
 
-    const { formValues, handleInputChange } = useForm(initialValues);
+    const { formValues, handleInputChange, setFormValues } = useForm(initialValues);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Форма отправлена с данными:", formValues);
+
+        const trimmedValues = { ...formValues };
+
+        for (let key in trimmedValues) {
+            if (typeof trimmedValues[key] === 'string') {
+                trimmedValues[key] = trimmedValues[key].trim();
+            }
+        }
+        
+        setFormValues(trimmedValues);
+        let validate_res;
+        
+        if (isRegistering){
+            validate_res = ValidateRegisterInput(trimmedValues);
+        }
+        else {
+            validate_res = ValidateLoginInput(trimmedValues);
+        }
+
+        if (!validate_res['success']){
+            setValidationError(validate_res['message']);
+            return;
+        }
+
+        setValidationError(null);
+
+        if (isRegistering){
+            RegisterUser(trimmedValues);
+        }
+        else {
+            LoginUser(trimmedValues);
+        }
+
+        setFormValues(initialValues);
     };
 
     const renderFormFields = () => (
@@ -50,7 +87,7 @@ function RegistrationForm() {
                 {isRegistering && (
                     <div className={styles['checkbox-pannel']}>
                         <label className={styles['checkbox-container']}>
-                            <input className={styles.checkbox} type="checkbox"/>
+                            <input onChange={(event) => handleInputChange('personal_data_allow', event.target.checked)} className={styles.checkbox} type="checkbox"/>
                             <span className={styles.checkmark}></span>
                         </label>
                         <h4>Погоджуюсь на обробку персональних даних</h4>
@@ -59,11 +96,17 @@ function RegistrationForm() {
                 <button type='submit' className={styles.submit}>{isRegistering ? 'Зареєструватись' : 'Увійти'}</button>
                 <div className={styles["log-in"]}>
                     <h3>{isRegistering ? 'Вже маєш акаунт?' : 'Не маєш акаунту?'}</h3>
-                    <button type='button' className={styles['log-button']} onClick={() => setIsRegistering(!isRegistering)}>
+                    <button type='button' className={styles['log-button']} 
+                        onClick={() => {
+                            setIsRegistering(!isRegistering);
+                            setValidationError(null)}}>
                         {isRegistering ? 'Увійти' : 'Створити'}
                     </button>
                 </div>
             </form>
+            {(validationError !== null) && (
+                <p className={styles['validaton-error']}>{validationError}</p>
+            )}
         </div>
     );
 }

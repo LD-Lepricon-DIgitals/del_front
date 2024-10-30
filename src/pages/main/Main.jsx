@@ -4,9 +4,7 @@ import Navbar from "../shared/navigation/navigation.jsx"
 import Footer from "../shared/footer/Footer.jsx";
 import Circle from "./components/circle/circle.jsx";
 import Layout from "./components/foodButtons/foodBtn.jsx";
-import Modal from "../shared/Modals/Modal.jsx";
-import {React, useState, useRef} from "react";
-import useClickOutside from "../../hooks/useClickOutside.js";
+import {React} from "react";
 
 function Main() {
    return (
