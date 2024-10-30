@@ -1,13 +1,15 @@
-import React from "react";
 import "./Main.css"
 import "../shared/styles/wrapper.css";
 import Navbar from "../shared/navigation/navigation.jsx"
 import Footer from "../shared/footer/Footer.jsx";
 import Circle from "./components/circle/circle.jsx";
 import Layout from "./components/foodButtons/foodBtn.jsx";
+import Modal from "../shared/Modals/Modal.jsx";
+import {React, useState, useRef} from "react";
+import useClickOutside from "../../hooks/useClickOutside.js";
 
 function Main() {
-    return (
+   return (
     <>
         <div className="wrapper">
             <Navbar />

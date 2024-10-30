@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --font-family: "Montserrat Alternates", sans-serif;
+    --input-height: 45px;
+}
+
+.submit {
+    background-color: #FF5B5B;
+    font-family: var(--font-family);
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 26px;
+    border-radius: 5px;
+    width: 100%;
+    height: calc(10px + var(--input-height));
+    margin-top: 8px;
+}
+
+.content {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.checkbox-pannel, .log-in{
+    display: flex;
+    justify-content: center;
+}
+
+.log-in {
+    margin-top: 5px;
+}
+.log-button {
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    background-color: transparent;
+    border: #414040 solid 2px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.text-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+.input {
+    height: var(--input-height);    
+}
+h1 {
+    margin: 5px;
+}
+h3, h4 {
+    margin: 5px;
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #FAFAFA;
+    font-size: small;
+    font-weight: 400;
+}
+h3 {
+    font-size: medium; 
+    font-weight: bold;
+}
+
+@media screen and (max-width: 550px) {
+    :root{
+        --input-height: 35px;
+    }
+}
+
+
+/*checkbox styles*/
+.checkbox-container {
+    display: flex;
+    position: relative;
+    margin-top: 5px; /* Отступ для чекбокса */
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+  }
+  
+  .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 13px;
+    width: 13px;
+    background-color: var(--secondary-color); 
+    border: 2px solid #FAFAFA  ; 
+    border-radius: 2px; 
+  }
+  
+  .checkbox-container input:checked ~ .checkmark {
+    background-color: #b3c24f; 
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .checkbox-container .checkmark:after {
+    left: 4px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
