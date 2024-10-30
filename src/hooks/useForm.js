@@ -10,7 +10,7 @@ function useForm(initialValues) {
         }));
     };
 
-    return { formValues, handleInputChange };
+    return { formValues, handleInputChange, setFormValues  };
 }
 
 export default useForm;

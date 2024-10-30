@@ -5,6 +5,11 @@
     --input-height: 45px;
 }
 
+.validaton-error {
+    font-family: var(--font-family);
+    font-size: medium;
+    color: #B9141D;
+}
 .submit {
     background-color: #FF5B5B;
     font-family: var(--font-family);
