@@ -9,6 +9,7 @@ function useClickOutside(elementRefs, isOpen, onClickOutside){
 
             if (isOpen && isClickOutside) {
                 onClickOutside();
+                
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
