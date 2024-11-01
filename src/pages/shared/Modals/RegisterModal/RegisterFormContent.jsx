@@ -11,9 +11,9 @@ function RegistrationForm() {
     const [validationError, setValidationError] = useState(null);
 
     const initialValues = {
+        login: '',
         surname: '',
         name: '',
-        patronymic: '',
         address: '',
         phone_number: '',
         password: '',
@@ -67,11 +67,12 @@ function RegistrationForm() {
                 <>
                     <TextInput value={formValues.surname} onInputChange={(value) => handleInputChange('surname', value)} placeholder='Прізвище' className={styles.input} id='surname'/>
                     <TextInput value={formValues.name} onInputChange={(value) => handleInputChange('name', value)} placeholder="Ім'я" className={styles.input} id='name' />
-                    <TextInput value={formValues.patronymic} onInputChange={(value) => handleInputChange('patronymic', value)} placeholder="По-батькові" className={styles.input} id='patronymic' />
                     <TextInput value={formValues.address} onInputChange={(value) => handleInputChange('address', value)} placeholder="Адреса" className={styles.input} id='address' />
+                <TextInput value={formValues.phone_number} onInputChange={(value) => handleInputChange('phone_number', value)} placeholder="Номер телефону" className={styles.input} id='phone_number' />
+                
                 </>
             )}
-            <TextInput value={formValues.phone_number} onInputChange={(value) => handleInputChange('phone_number', value)} placeholder="Номер телефону" className={styles.input} id='phone_number' />
+            <TextInput value={formValues.login} onInputChange={(value) => handleInputChange('login', value)} placeholder="Логін" className={styles.input} id='login' />
             <PasswordInput value={formValues.password} onInputChange={(value) => handleInputChange('password', value)} placeholder="Пароль" className={styles.input} id='password'/>
             {isRegistering && <PasswordInput value={formValues.submit_password} onInputChange={(value) => handleInputChange('submit_password', value)} placeholder="Підтвердити пароль" className={styles.input} id='submit_password'/>}
         </>

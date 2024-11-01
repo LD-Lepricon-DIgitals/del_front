@@ -11,7 +11,9 @@ function ValidateRegisterInput(formValues){
     if (!ValidateNumber(formValues['phone_number'])){
         return { success: false, message: 'Неправильний формат номеру!' };
     }
-
+    if (!ValidateLoginLength(formValues['login'])){
+        return { success: false, message: 'Логін має містити не менше 8 символів!'};
+    }
     if (!ValidatePasswordLength(formValues['password'])){
         return { success: false, message: 'Пароль має містити більше 8 символів'};
     }
@@ -27,13 +29,13 @@ function ValidateRegisterInput(formValues){
     return {success: true} 
 }
 function ValidateLoginInput(formValues){
-    if (!ValidateNumber(formValues['phone_number'])){
-        return { success: false, message: 'Неправильний формат номеру!' };
+    if (!ValidateLoginLength(formValues['login'])){
+        return { success: false, message: 'Логін має містити не менше 8 символів!'};
     }
-    if (ValidatePasswordLength(formValues['password'])){
+    if (!ValidatePasswordLength(formValues['password'])){
         return { success: false, message: 'Неправильний пароль!'};
     }
-    
+
     return {success: true} 
 }
 
@@ -58,6 +60,12 @@ function ValidatePasswordLength(password){
 }
 function ValidateAdressLength(address){
     if (address.length < 10){
+        return false;
+    }
+    return true
+}
+function ValidateLoginLength(login){
+    if (login.length < 8){
         return false;
     }
     return true
