@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --font-family: "Montserrat Alternates", sans-serif;
+}
+
+.profile-page {
+    background: url('../shared/img/Background.svg') no-repeat bottom center,
+        #FFF5D1;
+    background-size: contain, cover;
+    padding-bottom: 2%;
+}
+
+.data-title {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 900;
+}
+
+.profile {
+    background-color: #FFFFFF;
+    opacity: 0.99;
+    border: 1px solid #9DDF6B;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    color: #7e7a7a;
+    font-family: 'Montserrat Alternates';
+}
+
+.data-field {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    color: black;
+    background-color: #f2f2f282;
+}
+
+.avatar-img {
+    width: 100%;
+}
+
+.file-input {
+    width: 100%;
+    height: 20%;
+    background-color: rgba(147, 137, 137, 0.8);
+    position: absolute;
+    bottom: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.file-input img {
+    opacity: 1 !important;
+}
+
+.edit-avatar-icon {
+    z-index: 2;
+}
+
+.hidden-input {
+    display: none;
+}
+
+.edit-btn {
+    background-color: #9EDF6D;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.edit-icon {
+    width: 3vw;
+    margin-right: 0.5vw;
+}
+
+.avatar-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.validaton-error{
+    font-family: 'Montserrat';
+}
+
+.role {
+    font-family: var(--font-family);
+    font-weight: 900;
+    color: #FF0000;
+    text-align: center;
+
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .profile-page {
+        height: 100vh;
+    }
+
+    .data-title {
+        font-size: 7vw;
+        margin: 3vw;
+        margin-left: 4vw;
+    }
+
+    .profile {
+        width: 80vw;
+        padding: 3vh;
+        flex-direction: row;
+        margin: 3vw;
+        border-radius: 35px;
+
+    }
+
+    .profile-content{
+        width: 35vw;
+    }
+
+    .label {
+        font-size: 3vw;
+        margin: 0.5vh;
+    }
+
+    .data-field {
+        font-size: 4.5vw;
+        width: 32vw;
+        height: 3.5vh;
+        border: 2px solid #9EDF6D;
+        margin-bottom: 2vh;
+        padding: 2vw;
+        border-radius: 10px;
+    
+    }
+
+    .edit-btn {
+        font-size: 3vw;
+        height: 5vh;
+        margin-top: 3vw;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .edit-icon {
+        width: 4vw;
+        margin-right: 1.5vw;
+    }
+
+    .avatar-container {
+        width: 35vw;
+        height: 35vw;
+        border-radius: 50px;
+        margin-top: 5vw;
+        margin-left: 8vw;
+    }
+
+    .file-input {
+        height: 25%;
+    }
+
+    .edit-avatar-icon {
+        width: 25px;
+    }
+
+    .validaton-error {
+        font-family: "Montserrat Alternates", sans-serif;
+        font-size: 3vw;
+        font-weight: 600;
+        color: #B9141D;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .profile-page {
+        height: 100vh;
+    }
+
+    .data-title {
+        font-size: 10vw;
+        margin: 3vw;
+    }
+
+    .profile {
+        width: 80vw;
+        padding: 3vh;
+        flex-direction: row;
+        margin: 3vw;
+        border-radius: 35px;
+
+    }
+
+    .profile-content{
+        width: 40vw;
+    }
+
+    .label {
+        font-size: 4vw;
+        margin: 0.5vh;
+    }
+
+    .data-field {
+        font-size: 4vw;
+        width: 38vw;
+        height: 3.5vh;
+        border: 2px solid #9EDF6D;
+        margin-bottom: 1.5vh;
+        padding: 0.8vw;
+        border-radius: 5px;
+    }
+
+    .edit-btn {
+        font-size: 3.5vw;
+        height: 4vh;
+        margin-top: 4vw;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .edit-icon {
+        width: 5vw;
+        margin-right: 1.5vw;
+    }
+
+    .avatar-container {
+        width: 35vw;
+        height: 35vw;
+        border-radius: 25px;
+        margin-top: 7vw;
+        margin-left: 5vw;
+    }
+
+    .file-input {
+        height: 25%;
+    }
+
+    .edit-avatar-icon {
+        width: 25px;
+    }
+
+    .validaton-error {
+        font-family: "Montserrat Alternates", sans-serif;
+        font-size: 3vw;
+        font-weight: 600;
+        color: #B9141D;
+        text-align: center;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .profile-page {
+        height: 100%;
+    }
+
+    .data-title {
+        font-size: 5vw;
+        margin: 2vw;
+        margin-left: 4vw
+    }
+
+    .profile {
+        width: 83vw;
+        height: 100%;
+        padding: 4vh;
+        margin: 2vw;
+        border-radius: 53.5px;
+        padding: 3vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-content {
+        width: 40vw;
+    }
+
+    .label {
+        font-size: 2vw;
+        margin: 1vh;
+    }
+
+    .data-field {
+        font-size: 3vw;
+        width: 38vw;
+        height: 8vh;
+        border: 3.5px solid #9EDF6D;
+        padding: 0.8vw;
+        border-radius: 10px;
+        margin-bottom: 2vh;
+    }
+
+    .edit-btn {
+        font-size: 1.5vw;
+        width: 18vw;
+        height: 10vh;
+        border-radius: 10px;
+        margin-top: 2vw;
+
+    }
+
+    .edit-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .edit-icon {
+        width: 2.5vw;
+        margin-right: 0.5vw;
+    }
+
+
+    .avatar-container {
+        width: 26vw;
+        height: 26vw;
+        border-radius: 60px;
+        margin-top: 3.5vw;
+        margin-left: 6.5vw;
+    }
+
+    .validaton-error {
+        font-family: "Montserrat Alternates", sans-serif;
+        font-size: 2vw;
+        font-weight: 600;
+        color: #B9141D;
+        text-align: center;
+        align-self: center;
+        margin-top: 3vw;
+    }
+
+    .edit-avatar-icon {
+        width: 60px;
+    }
+
+    .role {
+        font-size: 50px;
+        margin-left: 6.5vw;
+        margin-top: 2vh;
+    }
+}
