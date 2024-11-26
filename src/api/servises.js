@@ -1,5 +1,6 @@
-function RegisterUser(data){
 
+function RegisterUser(data){
+    
 }
 function LoginUser(data){
 

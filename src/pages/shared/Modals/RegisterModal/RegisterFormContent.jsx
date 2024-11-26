@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './RegisterForm.module.css';
 import TextInput from '../../Inputs/TextInput/TextInput.jsx';
 import PasswordInput from '../../Inputs/PasswordInput/PasswordInput.jsx';
 import useForm from '../../../../hooks/useForm.js';
 import {ValidateLoginInput, ValidateRegisterInput} from './ValidateInputs.js'
-import { LoginUser, RegisterUser } from '../../../../api/UserServises.js';
+import { Requests } from '../../../../api/axios_queries/requests.js';
+import axiosClient from '../../../../api/axios_queries/axios.js';
 
-function RegistrationForm() {
+function RegistrationForm({toggleModalOpen}) {
     const [isRegistering, setIsRegistering] = useState(true);
     const [validationError, setValidationError] = useState(null);
+    const requests = new Requests(axiosClient);
+    const navigate = useNavigate();
 
     const initialValues = {
         login: '',
@@ -23,7 +27,7 @@ function RegistrationForm() {
 
     const { formValues, handleInputChange, setFormValues } = useForm(initialValues);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const trimmedValues = { ...formValues };
@@ -51,11 +55,52 @@ function RegistrationForm() {
 
         setValidationError(null);
 
+        let respose;
+
         if (isRegistering){
-            RegisterUser(trimmedValues);
+            const regData = {
+                user_login: trimmedValues.login,
+                user_name: trimmedValues.name,
+                user_surname: trimmedValues.surname,
+                user_address: trimmedValues.address,
+                user_phone : trimmedValues.phone_number,
+                user_password: trimmedValues.password
+            }
+            console.log(regData);
+            
+            try {
+                respose = await requests.Registration(regData);
+            }
+            catch (err){
+                if (err.response?.status === 409) {
+                    alert("Користувач вже існує!");
+                }
+                
+                return;
+            }
         }
         else {
-            LoginUser(trimmedValues);
+            const logData = {
+                user_login: trimmedValues.login,
+                user_password: trimmedValues.password
+            }
+            console.log(logData);
+            try {
+                respose = await requests.Login(logData);
+            }
+            catch (err){
+                if (err.response?.status === 404) {
+                    alert("Користувача не знайдено! Перевірте логін та пароль!.");
+                }
+
+                return;
+            }
+        }
+       
+        console.log(respose);
+        if (respose.status === 200 ){
+            navigate('/profile');
+            toggleModalOpen();
         }
 
         setFormValues(initialValues);

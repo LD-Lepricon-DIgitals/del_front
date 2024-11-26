@@ -48,9 +48,10 @@ function Navigation(){
             setIsDropOpen(!isDropOpen);
     } 
 
-   function OpenModalOnClick() {
+   function toggleModalOnClick() {
         setIsRegModalOpen(!isRegModalOpen);
    }
+   
    useClickOutside([modalRef], isRegModalOpen, () => 
     {
         setIsRegModalOpen(false)
@@ -68,12 +69,12 @@ function Navigation(){
                     <Link to={"/menu"} className="link"><Button className="menu-button "><p className="navi-font">Меню</p></Button></Link>
                     <Link to="/cart"><Button ><img className="ico" src={CartIco} alt="Cart" /></Button></Link>
                     {/* <Link to="/profile"><Button><img className="ico" src={UserIco} alt="profile" /></Button></Link> */}
-                    <Button onClick={OpenModalOnClick}><img className="ico" src={UserIco} alt="profile" /></Button>
+                    <Button onClick={toggleModalOnClick}><img className="ico" src={UserIco} alt="profile" /></Button>
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
             <DropDownMenu ref={menuRef} isOpen={isDropOpen && checkWindowWider(550)}></DropDownMenu>
-            <Modal ref={modalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
+            <Modal ref={modalRef} isOpen={isRegModalOpen}><RegistrationForm toggleModalOpen={toggleModalOnClick}/></Modal>
         </div>
     );
 }
