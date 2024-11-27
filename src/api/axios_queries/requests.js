@@ -1,5 +1,3 @@
-import axiosClient from './axios';
-
 export class Requests {
 
     constructor(axiosInstance) {
@@ -21,11 +19,13 @@ export class Requests {
       return this.axios(config);
     }
 
-    Registration(data) {
+    registration(data) {
         return this.sendRequest('post', '/auth/register', data);
     }
-    Login(data){
+    login(data){
         return this.sendRequest('post', '/auth/login', data);
     }
-    
+    getUserInfo(){
+        return this.sendRequest('get', 'api/user/info');
+    }
 }  

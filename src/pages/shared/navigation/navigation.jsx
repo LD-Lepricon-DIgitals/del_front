@@ -12,12 +12,15 @@ import ListIco from  "../icons/TEMP_List_ico.svg"
 import Clear from "../icons/Clear_ico.svg"
 import RegistrationForm from "../Modals/RegisterModal/RegisterFormContent.jsx"
 import Modal from "../Modals/Modal.jsx";
+import { Requests } from "../../../api/axios_queries/requests.js";
+import axiosClient from "../../../api/axios_queries/axios.js";
 
 function Navigation(){
     const [isDropOpen, setIsDropOpen] = useState(false);
     const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
     const [inputText, setInputText] = useState("");
     const [isRegModalOpen, setIsRegModalOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState();
 
     const modalRef = useRef(null);
     const menuRef = useRef(null);
@@ -26,6 +29,23 @@ function Navigation(){
     useClickOutside([menuRef, menuButtonRef], isDropOpen, () => setIsDropOpen(false));
     const windowWidth = useWindowWidth();
     
+    useEffect(() => {
+        const requests = new Requests(axiosClient);
+        const getUserInfo = async () => {
+
+            let res
+            try {
+                res = await requests.getUserInfo();
+
+            } catch (error) {
+                res = error;
+            }
+
+            console.log(res);
+        } 
+        getUserInfo();
+    }, []);    
+
     useEffect(() => {
        if (inputText.length !== 0){
             setIsClearButtonOpen(true);

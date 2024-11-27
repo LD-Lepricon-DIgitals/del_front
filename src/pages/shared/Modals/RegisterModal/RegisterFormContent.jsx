@@ -55,7 +55,7 @@ function RegistrationForm({toggleModalOpen}) {
 
         setValidationError(null);
 
-        let respose;
+        let response;
 
         if (isRegistering){
             const regData = {
@@ -69,7 +69,7 @@ function RegistrationForm({toggleModalOpen}) {
             console.log(regData);
             
             try {
-                respose = await requests.Registration(regData);
+                response = await requests.registration(regData);
             }
             catch (err){
                 if (err.response?.status === 409) {
@@ -84,9 +84,8 @@ function RegistrationForm({toggleModalOpen}) {
                 user_login: trimmedValues.login,
                 user_password: trimmedValues.password
             }
-            console.log(logData);
             try {
-                respose = await requests.Login(logData);
+                response = await requests.login(logData);
             }
             catch (err){
                 if (err.response?.status === 404) {
@@ -97,8 +96,9 @@ function RegistrationForm({toggleModalOpen}) {
             }
         }
        
-        console.log(respose);
-        if (respose.status === 200 ){
+        console.log(response);
+        if (response.status === 200 ){
+            console.log(response);
             navigate('/profile');
             toggleModalOpen();
         }
@@ -113,8 +113,7 @@ function RegistrationForm({toggleModalOpen}) {
                     <TextInput value={formValues.surname} onInputChange={(value) => handleInputChange('surname', value)} placeholder='Прізвище' className={styles.input} id='surname'/>
                     <TextInput value={formValues.name} onInputChange={(value) => handleInputChange('name', value)} placeholder="Ім'я" className={styles.input} id='name' />
                     <TextInput value={formValues.address} onInputChange={(value) => handleInputChange('address', value)} placeholder="Адреса" className={styles.input} id='address' />
-                <TextInput value={formValues.phone_number} onInputChange={(value) => handleInputChange('phone_number', value)} placeholder="Номер телефону" className={styles.input} id='phone_number' />
-                
+                    <TextInput value={formValues.phone_number} onInputChange={(value) => handleInputChange('phone_number', value)} placeholder="Номер телефону" className={styles.input} id='phone_number' />
                 </>
             )}
             <TextInput value={formValues.login} onInputChange={(value) => handleInputChange('login', value)} placeholder="Логін" className={styles.input} id='login' />
