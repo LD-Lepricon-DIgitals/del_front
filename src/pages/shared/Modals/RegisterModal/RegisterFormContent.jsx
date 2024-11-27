@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './RegisterForm.module.css';
 import TextInput from '../../Inputs/TextInput/TextInput.jsx';
@@ -7,12 +7,14 @@ import useForm from '../../../../hooks/useForm.js';
 import {ValidateLoginInput, ValidateRegisterInput} from './ValidateInputs.js'
 import { Requests } from '../../../../api/axios_queries/requests.js';
 import axiosClient from '../../../../api/axios_queries/axios.js';
+import { AppContext } from '../../../../context/AppContext.jsx'; 
 
 function RegistrationForm({toggleModalOpen}) {
     const [isRegistering, setIsRegistering] = useState(true);
     const [validationError, setValidationError] = useState(null);
-    const requests = new Requests(axiosClient);
     const navigate = useNavigate();
+    const { setUserInfo, setIsUserAuthorized} = useContext(AppContext);
+    const requests = new Requests(axiosClient);
 
     const initialValues = {
         login: '',
@@ -29,82 +31,72 @@ function RegistrationForm({toggleModalOpen}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const trimmedValues = { ...formValues };
-
-        for (let key in trimmedValues) {
-            if (typeof trimmedValues[key] === 'string') {
-                trimmedValues[key] = trimmedValues[key].trim();
-            }
-        }
-        
+    
+        // Удаление лишних пробелов
+        const trimmedValues = Object.fromEntries(
+            Object.entries(formValues).map(([key, value]) => 
+                [key, typeof value === 'string' ? value.trim() : value]
+            )
+        );
+    
         setFormValues(trimmedValues);
-        let validate_res;
-        
-        if (isRegistering){
-            validate_res = ValidateRegisterInput(trimmedValues);
-        }
-        else {
-            validate_res = ValidateLoginInput(trimmedValues);
-        }
-
-        if (!validate_res['success']){
-            setValidationError(validate_res['message']);
+    
+        // Валидация
+        const validateRes = isRegistering
+            ? ValidateRegisterInput(trimmedValues)
+            : ValidateLoginInput(trimmedValues);
+    
+        if (!validateRes.success) {
+            setValidationError(validateRes.message);
             return;
         }
-
+    
         setValidationError(null);
-
-        let response;
-
-        if (isRegistering){
-            const regData = {
+    
+        // Формирование данных для API
+        const data = isRegistering
+            ? {
                 user_login: trimmedValues.login,
                 user_name: trimmedValues.name,
                 user_surname: trimmedValues.surname,
                 user_address: trimmedValues.address,
-                user_phone : trimmedValues.phone_number,
-                user_password: trimmedValues.password
+                user_phone: trimmedValues.phone_number,
+                user_password: trimmedValues.password,
             }
-            console.log(regData);
-            
-            try {
-                response = await requests.registration(regData);
-            }
-            catch (err){
-                if (err.response?.status === 409) {
-                    alert("Користувач вже існує!");
-                }
-                
-                return;
-            }
-        }
-        else {
-            const logData = {
+            : {
                 user_login: trimmedValues.login,
-                user_password: trimmedValues.password
+                user_password: trimmedValues.password,
+            };
+    
+        try {
+            const response = isRegistering
+                ? await requests.registration(data)
+                : await requests.login(data);
+    
+            if (response.status === 200) {
+                const userInfo = await requests.getUserInfo();
+                setIsUserAuthorized(true);
+                setUserInfo(userInfo.data);
+                navigate('/profile');
+                toggleModalOpen();
             }
-            try {
-                response = await requests.login(logData);
-            }
-            catch (err){
-                if (err.response?.status === 404) {
-                    alert("Користувача не знайдено! Перевірте логін та пароль!.");
-                }
-
-                return;
-            }
+        } catch (err) {
+            handleApiError(err);
         }
-       
-        console.log(response);
-        if (response.status === 200 ){
-            console.log(response);
-            navigate('/profile');
-            toggleModalOpen();
-        }
-
+    
         setFormValues(initialValues);
     };
+    
+    const handleApiError = (err) => {
+        if (isRegistering && err.response?.status === 409) {
+            alert("Користувач вже існує!");
+        } else if (!isRegistering && err.response?.status === 404) {
+            alert("Користувача не знайдено! Перевірте логін та пароль!");
+        } else {
+            alert("Сталася помилка. Спробуйте знову пізніше.");
+        }
+    };
+    
 
     const renderFormFields = () => (
         <>

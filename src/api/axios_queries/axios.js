@@ -9,18 +9,4 @@ const axiosClient = axios.create({
   },
 });
 
-axiosClient.interceptors.response.use(response => {
-  const setCookieHeader = response.headers['set-cookie'];
-  console.log(setCookieHeader);
-  
-  if (setCookieHeader) {
-      setCookieHeader.forEach(cookie => {
-      const [cookieName, cookieValue] = cookie.split(';')[0].split('=');
-      console.log(`${cookieName}  ${cookieValue}`);
-      localStorage.setItem(cookieName, cookieValue);
-    });
-  }
-  
-  return response;
-});
 export default axiosClient;
