@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://gamch1k.v6.navy/delivery",
   timeout: 5000,
   withCredentials: true, 
   headers: {
