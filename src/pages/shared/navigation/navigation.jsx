@@ -3,23 +3,26 @@ import useClickOutside from "../../../hooks/useClickOutside.js";
 import useWindowWidth from "../../../hooks/useWindowWidth.js";
 import {React, useState, useRef, useEffect } from "react";
 import Button from "../NavigationButton/Button.jsx";
-import DropDownMenu from "../../main/components/DropDownMenu/drop_menu.jsx";
+import DropDownMenu from "./DropDownMenu/drop_menu.jsx";
 import { Link } from "react-router-dom";
 import UserIco from  "../icons/User_ico.svg"
 import CartIco from  "../icons/Cart_ico.svg"
 import SearchIco from  "../icons/Search_ico.svg"
 import ListIco from  "../icons/TEMP_List_ico.svg"
 import Clear from "../icons/Clear_ico.svg"
-import RegistrationForm from "../Modals/RegisterModal/RegisterFormContent.jsx"
+import RegistrationForm from "./RegisterForm/RegisterFormContent.jsx"
 import Modal from "../Modals/Modal.jsx";
+import CartModalContent from "./CartModalContent/CartModalContent.jsx";
 
 function Navigation(){
     const [isDropOpen, setIsDropOpen] = useState(false);
     const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
     const [inputText, setInputText] = useState("");
     const [isRegModalOpen, setIsRegModalOpen] = useState(false);
+    const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
-    const modalRef = useRef(null);
+    const registerModalRef = useRef(null);
+    const cartModalRef = useRef(null);
     const menuRef = useRef(null);
     const menuButtonRef = useRef(null);
 
@@ -48,12 +51,13 @@ function Navigation(){
             setIsDropOpen(!isDropOpen);
     } 
 
-   function OpenModalOnClick() {
-        setIsRegModalOpen(!isRegModalOpen);
-   }
-   useClickOutside([modalRef], isRegModalOpen, () => 
+   useClickOutside([registerModalRef], isRegModalOpen, () => 
     {
         setIsRegModalOpen(false)
+    });
+    useClickOutside([cartModalRef], isCartModalOpen, () => 
+    {
+        setIsCartModalOpen(false)
     });
 
     return(
@@ -66,14 +70,14 @@ function Navigation(){
                     </div>
                     <div className="menu-buttons">
                     <Link to={"/menu"} className="link"><Button className="menu-button "><p className="navi-font">Меню</p></Button></Link>
-                    <Link to="/cart"><Button ><img className="ico" src={CartIco} alt="Cart" /></Button></Link>
-                    {/* <Link to="/profile"><Button><img className="ico" src={UserIco} alt="profile" /></Button></Link> */}
-                    <Button onClick={OpenModalOnClick}><img className="ico" src={UserIco} alt="profile" /></Button>
+                    <Button onClick={() => {setIsCartModalOpen(!isCartModalOpen)}}><img className="ico" src={CartIco} alt="Cart" /></Button>
+                    <Button onClick={() => {setIsRegModalOpen(!isRegModalOpen)}}><img className="ico" src={UserIco} alt="profile" /></Button>
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
             <DropDownMenu ref={menuRef} isOpen={isDropOpen && checkWindowWider(550)}></DropDownMenu>
-            <Modal ref={modalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
+            <Modal ref={registerModalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
+            <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent/></Modal>
         </div>
     );
 }

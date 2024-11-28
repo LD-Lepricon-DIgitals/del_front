@@ -80,7 +80,7 @@ function RegistrationForm() {
 
     return (
         <div className={styles.content}>
-            <h1>{isRegistering ? 'Реєстрація' : 'Увійти'}</h1>
+            <h1 className={styles['main-header']}>{isRegistering ? 'Реєстрація' : 'Увійти'}</h1>
             <form onSubmit={handleSubmit}>
                 <div className={styles["text-inputs"]}>
                     {renderFormFields()}

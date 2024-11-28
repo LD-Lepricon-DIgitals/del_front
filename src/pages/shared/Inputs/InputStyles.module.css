@@ -3,7 +3,7 @@
 :root {
     --font: "Montserrat Alternates", sans-serif;
     --font-color: #414040;
-    --font-size: large;
+    --inputs-font-size: large;
 }
 .hidden {
     opacity: 0;
@@ -18,6 +18,8 @@
     height: 15px;
 }
 .input-pannel {
+    resize: horizontal;
+    max-width: 95vw;
     padding: 3px;
     display: flex;
     border: 1px solid #B5E78F;
@@ -25,11 +27,12 @@
     border-radius: 10px;
 }
 .input {
+    width: 100%;
     margin-left: 5px ;
     flex-basis: 100%;
     border: none;
     outline: none; 
     font-family: var(--font);
-    color: var(--font-size);
-    font-size: var(--font-size);
+    color: var(--inputs-font-size);
+    font-size: calc(0.96 * 100%);
 }

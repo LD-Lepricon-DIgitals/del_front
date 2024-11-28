@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+.content {
+  background-color: aliceblue;
+  min-width: 90%;
+  height: 45px;
+  border-radius: 53px;
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+.text{
+  margin: 0;
+}
+.red-border {
+  border: #B9161E solid 3px;
+  transition: border 0.3s ease;
+}
+.green-border {
+    border: #9DDF6B solid 3px;
+    transition: border 0.3s ease;
+}
+
+.text-block {
+  height: 100%;
+  display: flex;
+  margin-left: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.checkbox-block {
+    display: flex;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .text-block {
+    font-size: 15px;
+  }
+}
+
+
+
+/* Скрываем стандартный элемент чекбокса */
+.checkbox-input {
+  display: none;
+}
+
+/* Общий контейнер для чекбокса */
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Базовый стиль кастомного чекбокса */
+.checkbox-custom {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Красный стиль для неактивного чекбокса */
+.checkbox-red {
+  border: 2px solid #B9161E ;
+  background-color: #fff;
+}
+
+.checkbox-red:after {
+  content: "✔";
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  visibility: hidden; /* Скрыта галочка по умолчанию */
+  transition: visibility 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* Стиль для активного чекбокса */
+.checkbox-input:checked + .checkbox-custom.checkbox-red {
+  background-color: #8bc34a;
+  border-color: transparent;
+}
+
+.checkbox-input:checked + .checkbox-custom.checkbox-red:after {
+  visibility: visible;
+  opacity: 1; /* Плавно показывает галочку */
+}
+
+/* Эффект при наведении */
+.checkbox-custom:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
