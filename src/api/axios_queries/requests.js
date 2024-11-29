@@ -26,6 +26,6 @@ export class Requests {
         return this.sendRequest('post', '/auth/login', data);
     }
     getUserInfo(){
-        return this.sendRequest('get', 'api/user/info');
+        return this.sendRequest('get', '/api/user/info');
     }
 }  

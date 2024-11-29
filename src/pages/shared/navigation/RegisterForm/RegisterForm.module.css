@@ -10,6 +10,10 @@
     font-size: medium;
     color: #B9141D;
 }
+.main-header {
+    margin: 8px;
+    font-size: 58px;
+}
 .submit {
     background-color: #FF5B5B;
     font-family: var(--font-family);
@@ -32,13 +36,15 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+    max-width: 82vw;
 }
 .checkbox-pannel, .log-in{
+    padding-left: 5px;
     display: flex;
-    justify-content: center;
 }
 
 .log-in {
+    justify-content: center;
     margin-top: 5px;
 }
 .log-button {
@@ -59,11 +65,10 @@
     gap: 5px;
 }
 .input {
-    height: var(--input-height);    
+    height: var(--input-height);  
+    font-size: large;  
 }
-h1 {
-    margin: 5px;
-}
+
 h3, h4 {
     margin: 5px;
     font-family: "Montserrat Alternates", sans-serif;
@@ -79,6 +84,19 @@ h3 {
 @media screen and (max-width: 550px) {
     :root{
         --input-height: 35px;
+        --inputs-font-size: small;
+    }
+    .submit {
+        font-size: large;
+    }
+    .input {
+        font-size: medium;
+    }
+    .main-header {
+        font-size: 38px;
+    }
+    .log-button {
+        font-size: 12px;
     }
 }
 

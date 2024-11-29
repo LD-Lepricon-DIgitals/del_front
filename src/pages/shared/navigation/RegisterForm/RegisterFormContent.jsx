@@ -24,7 +24,8 @@ function RegistrationForm({toggleModalOpen}) {
         phone_number: '',
         password: '',
         submit_password: '',
-        personal_data_allow: false
+        personal_data_allow: false,
+        is_courier: false
     };
 
     const { formValues, handleInputChange, setFormValues } = useForm(initialValues);
@@ -62,6 +63,7 @@ function RegistrationForm({toggleModalOpen}) {
                 user_address: trimmedValues.address,
                 user_phone: trimmedValues.phone_number,
                 user_password: trimmedValues.password,
+                user_role: trimmedValues.is_courier ? 'worker' : 'user'
             }
             : {
                 user_login: trimmedValues.login,
@@ -69,10 +71,14 @@ function RegistrationForm({toggleModalOpen}) {
             };
     
         try {
+            console.log(data);
             const response = isRegistering
                 ? await requests.registration(data)
                 : await requests.login(data);
-    
+            
+        
+            console.log(`RES: ${response.status}`);
+            
             if (response.status === 200) {
                 const userInfo = await requests.getUserInfo();
                 setIsUserAuthorized(true);
@@ -82,6 +88,7 @@ function RegistrationForm({toggleModalOpen}) {
             }
         } catch (err) {
             handleApiError(err);
+            return;
         }
     
         setFormValues(initialValues);
@@ -116,19 +123,28 @@ function RegistrationForm({toggleModalOpen}) {
 
     return (
         <div className={styles.content}>
-            <h1>{isRegistering ? 'Реєстрація' : 'Увійти'}</h1>
+            <h1 className={styles['main-header']}>{isRegistering ? 'Реєстрація' : 'Увійти'}</h1>
             <form onSubmit={handleSubmit}>
                 <div className={styles["text-inputs"]}>
                     {renderFormFields()}
                 </div>
                 {isRegistering && (
-                    <div className={styles['checkbox-pannel']}>
-                        <label className={styles['checkbox-container']}>
-                            <input onChange={(event) => handleInputChange('personal_data_allow', event.target.checked)} className={styles.checkbox} type="checkbox"/>
-                            <span className={styles.checkmark}></span>
-                        </label>
-                        <h4>Погоджуюсь на обробку персональних даних</h4>
-                    </div>
+                    <>
+                        <div className={styles['checkbox-pannel']}>
+                            <label className={styles['checkbox-container']}>
+                                <input onChange={(event) => handleInputChange('personal_data_allow', event.target.checked)} className={styles.checkbox} type="checkbox"/>
+                                <span className={styles.checkmark}></span>
+                            </label>
+                            <h4>Погоджуюсь на обробку персональних даних</h4>
+                        </div>
+                        <div className={styles['checkbox-pannel']}>
+                            <label className={styles['checkbox-container']}>
+                                <input onChange={(event) => handleInputChange('is_courier', event.target.checked)} className={styles.checkbox} type="checkbox"/>
+                                <span className={styles.checkmark}></span>
+                            </label>
+                            <h4>Кур'єр</h4>
+                        </div>
+                    </>
                 )}
                 <button type='submit' className={styles.submit}>{isRegistering ? 'Зареєструватись' : 'Увійти'}</button>
                 <div className={styles["log-in"]}>

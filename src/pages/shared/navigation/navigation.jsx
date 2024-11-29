@@ -10,9 +10,10 @@ import { React, useState, useRef, useEffect, useContext } from "react";
 
 // Компоненты
 import Button from "../NavigationButton/Button.jsx";
-import DropDownMenu from "../../main/components/DropDownMenu/drop_menu.jsx";
-import RegistrationForm from "../Modals/RegisterModal/RegisterFormContent.jsx";
+import DropDownMenu from "./DropDownMenu/drop_menu.jsx";
+import RegistrationForm from "./RegisterForm/RegisterFormContent.jsx"
 import Modal from "../Modals/Modal.jsx";
+import CartModalContent from './CartModalContent/CartModalContent.jsx';
 
 // Иконки
 import UserIco from "../icons/User_ico.svg";
@@ -34,11 +35,16 @@ function Navigation(){
     const [isDropOpen, setIsDropOpen] = useState(false);
     const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
     const [inputText, setInputText] = useState("");
+  
     const [isRegModalOpen, setIsRegModalOpen] = useState(false);
+    const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+
     const { setUserInfo, isUserAuthorized, setIsUserAuthorized} = useContext(AppContext);
     const navigate = useNavigate();
 
-    const modalRef = useRef(null);
+
+    const registerModalRef = useRef(null);
+    const cartModalRef = useRef(null);
     const menuRef = useRef(null);
     const menuButtonRef = useRef(null);
 
@@ -60,7 +66,6 @@ function Navigation(){
                     setUserInfo(null);
                 }
             }
-            console.log(res);
         }
             getUserInfo();
     }, [setIsUserAuthorized, setUserInfo ]);
@@ -91,14 +96,18 @@ function Navigation(){
             navigate('/profile');
         }
    }
-   useClickOutside([modalRef], isRegModalOpen, () =>
+   useClickOutside([registerModalRef], isRegModalOpen, () => 
     {
         setIsRegModalOpen(false)
+    });
+    useClickOutside([cartModalRef], isCartModalOpen, () => 
+    {
+        setIsCartModalOpen(false)
     });
 
     return(
         <div className="navi">
-            <div className="navigation-content">
+                        <div className="navigation-content">
                     <div className="search-pannel">
                         <Button><img className="ico" src={SearchIco} alt="Search" /></Button>
                         <input type="text" className="search-input navi-font" value={inputText} placeholder={"Пошук..."} onChange={e => setInputText(e.target.value)} id='navbar-input'/>
@@ -106,13 +115,14 @@ function Navigation(){
                     </div>
                     <div className="menu-buttons">
                     <Link to={"/menu"} className="link"><Button className="menu-button "><p className="navi-font">Меню</p></Button></Link>
-                    <Link to="/cart"><Button ><img className="ico" src={CartIco} alt="Cart" /></Button></Link>
+                    <Button onClick={() => {setIsCartModalOpen(!isCartModalOpen)}}><img className="ico" src={CartIco} alt="Cart" /></Button>
                     <Button onClick={handleProfileButtonPressed}><img className="ico" src={UserIco} alt="profile" /></Button>
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
             <DropDownMenu ref={menuRef} isOpen={isDropOpen && checkWindowWider(550)}></DropDownMenu>
-            <Modal ref={modalRef} isOpen={isRegModalOpen}><RegistrationForm toggleModalOpen={handleProfileButtonPressed}/></Modal>
+            <Modal ref={registerModalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
+            <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent/></Modal>
         </div>
     );
 }
