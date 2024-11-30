@@ -19,6 +19,7 @@ export class Requests {
       return this.axios(config);
     }
 
+    // user queries
     registration(data) {
         return this.sendRequest('post', '/auth/register', data);
     }
@@ -27,5 +28,20 @@ export class Requests {
     }
     getUserInfo(){
         return this.sendRequest('get', '/api/user/info');
+    }
+    logout(){
+      return this.sendRequest('post', '/api/user/logout');
+    }
+    delete(){
+      return this.sendRequest('delete', '/api/user/delete');
+    }
+    updatePhoto(photo){
+      return this.sendRequest('patch', '/api/user/photo', photo);
+    }
+    changePassword(newPassword){
+      return this.sendRequest('patch', '/api/user/change_password', newPassword);
+    }
+    changeUserProfile(data){
+      return this.sendRequest('patch', '/api/user/change', data);
     }
 }  
