@@ -1,11 +1,14 @@
 import React from "react";
-import Button from "../shared/NavigationButton/Button";
-import HomeIco from "../shared/icons/TEMP_Home_ico.svg"
 import { Link } from "react-router-dom";
+import HomeButton from '../shared/HomeButton/HomeButton'
+import Navbar from "../shared/navigation/navigation.jsx"
 
 function Menu(){
     return(
-        <div><Link to="/" ><Button><img className="ico" src={HomeIco} alt="home page" /></Button></Link></div>
+        <div>
+            <Navbar/>
+            <Link to="/"><HomeButton/></Link>
+        </div>
     );
 }
 
