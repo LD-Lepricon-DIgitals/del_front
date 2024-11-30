@@ -9,7 +9,7 @@ import { Requests } from '../../../../api/axios_queries/requests.js';
 import axiosClient from '../../../../api/axios_queries/axios.js';
 import { AppContext } from '../../../../context/AppContext.jsx'; 
 
-function RegistrationForm({toggleModalOpen}) {
+function RegistrationForm() {
     const [isRegistering, setIsRegistering] = useState(true);
     const [validationError, setValidationError] = useState(null);
     const navigate = useNavigate();
@@ -84,17 +84,16 @@ function RegistrationForm({toggleModalOpen}) {
                 setIsUserAuthorized(true);
                 setUserInfo(userInfo.data);
                 navigate('/profile');
-                toggleModalOpen();
+                setFormValues(initialValues);
             }
         } catch (err) {
             handleApiError(err);
             return;
         }
-    
-        setFormValues(initialValues);
     };
     
     const handleApiError = (err) => {
+        console.log(err);
         if (isRegistering && err.response?.status === 409) {
             alert("Користувач вже існує!");
         } else if (!isRegistering && err.response?.status === 404) {
