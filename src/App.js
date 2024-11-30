@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AppProvider } from './context/AppContext.jsx';
-// Лениво загружаемые компоненты
+// Lazy loading to optimize site
 const Main = lazy(() => import('./pages/main/Main.jsx'));
 const Profile = lazy(() => import('./pages/profile/Profile.jsx'));
 const Menu = lazy(() => import('./pages/menu/Menu.jsx'));

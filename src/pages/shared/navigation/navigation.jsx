@@ -1,33 +1,33 @@
-// Стили
+// styles
 import "./navigation.css";
 
-// Хуки
+// Hooks
 import useClickOutside from "../../../hooks/useClickOutside.js";
 import useWindowWidth from "../../../hooks/useWindowWidth.js";
 
-// React и хуки
+// React
 import { React, useState, useRef, useEffect, useContext } from "react";
 
-// Компоненты
+// Components
 import Button from "../NavigationButton/Button.jsx";
 import DropDownMenu from "./DropDownMenu/drop_menu.jsx";
 import RegistrationForm from "./RegisterForm/RegisterFormContent.jsx"
 import Modal from "../Modals/Modal.jsx";
 import CartModalContent from './CartModalContent/CartModalContent.jsx';
 
-// Иконки
+// icos
 import UserIco from "../icons/User_ico.svg";
 import CartIco from "../icons/Cart_ico.svg";
 import SearchIco from "../icons/Search_ico.svg";
 import ListIco from "../icons/TEMP_List_ico.svg";
 import Clear from "../icons/Clear_ico.svg";
 
-// API и контексты
+// API and app context
 import { Requests } from "../../../api/axios_queries/requests.js";
 import axiosClient from "../../../api/axios_queries/axios.js";
 import { AppContext } from "../../../context/AppContext.jsx";
 
-// Роутинг
+// Routing
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -70,7 +70,7 @@ function Navigation(){
             getUserInfo();
     }, [setIsUserAuthorized, setUserInfo ]);
 
-    // СЛУЖЕБНЫЙ (нужен для вывода юзер даты сразу после того, как она изменилась, потом убрать)
+    // code to show user data
     // useEffect(() => {
     //     console.log(`USER DATA IS ${JSON.stringify(userInfo)}`);
     // }, [userInfo]); // Этот useEffect сработает, когда userInfo изменится

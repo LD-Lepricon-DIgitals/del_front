@@ -1,7 +1,7 @@
 hr {
-    border: none; /* Удаляем границу по умолчанию */
-    height: 1px; /* Устанавливаем высоту линии */
-    background-color: var(--secondary-color) ; /* Устанавливаем цвет фона для линии */
+    border: none; 
+    height: 1px; 
+    background-color: var(--secondary-color) ; 
     opacity: 0.5;
     margin-top: 0;
 }

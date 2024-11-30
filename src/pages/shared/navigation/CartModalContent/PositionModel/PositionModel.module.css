@@ -40,15 +40,11 @@
     font-size: 15px;
   }
 }
-
-
-
-/* Скрываем стандартный элемент чекбокса */
+/* custom checkbox styles */
 .checkbox-input {
   display: none;
 }
 
-/* Общий контейнер для чекбокса */
 .checkbox-container {
   display: inline-flex;
   align-items: center;
@@ -56,7 +52,6 @@
   position: relative;
 }
 
-/* Базовый стиль кастомного чекбокса */
 .checkbox-custom {
   width: 24px;
   height: 24px;
@@ -69,7 +64,6 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Красный стиль для неактивного чекбокса */
 .checkbox-red {
   border: 2px solid #B9161E ;
   background-color: #fff;
@@ -80,12 +74,11 @@
   color: white;
   font-size: 18px;
   font-weight: bold;
-  visibility: hidden; /* Скрыта галочка по умолчанию */
+  visibility: hidden; 
   transition: visibility 0.3s ease, opacity 0.3s ease;
   opacity: 0;
 }
 
-/* Стиль для активного чекбокса */
 .checkbox-input:checked + .checkbox-custom.checkbox-red {
   background-color: #8bc34a;
   border-color: transparent;
@@ -93,10 +86,9 @@
 
 .checkbox-input:checked + .checkbox-custom.checkbox-red:after {
   visibility: visible;
-  opacity: 1; /* Плавно показывает галочку */
+  opacity: 1; 
 }
 
-/* Эффект при наведении */
 .checkbox-custom:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);

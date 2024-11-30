@@ -33,7 +33,7 @@ function RegistrationForm({toggleModalOpen}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // Удаление лишних пробелов
+        // Trim all values to avoid errors
         const trimmedValues = Object.fromEntries(
             Object.entries(formValues).map(([key, value]) => 
                 [key, typeof value === 'string' ? value.trim() : value]
@@ -42,7 +42,7 @@ function RegistrationForm({toggleModalOpen}) {
     
         setFormValues(trimmedValues);
     
-        // Валидация
+        // validation
         const validateRes = isRegistering
             ? ValidateRegisterInput(trimmedValues)
             : ValidateLoginInput(trimmedValues);
@@ -54,7 +54,7 @@ function RegistrationForm({toggleModalOpen}) {
     
         setValidationError(null);
     
-        // Формирование данных для API
+        // Formating to API queries format
         const data = isRegistering
             ? {
                 user_login: trimmedValues.login,
