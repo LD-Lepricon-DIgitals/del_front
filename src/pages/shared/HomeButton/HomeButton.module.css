@@ -1,0 +1,24 @@
+.home-button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px; 
+    height: 55px;
+    background-color: #CCD770;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+.home-button:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.home-button:active {
+    transform: scale(0.95); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Слабая тень при клике */
+}
