@@ -4,7 +4,7 @@
     height: 10%;
     background-color: var(--secondary-color);
     padding: 20px 0;
-    position: relative; /* Обычное позиционирование */
+    position: relative; 
     display: flex;
     justify-content: center;
 }

@@ -1,25 +1,47 @@
-import "./navigation.css"
+// styles
+import "./navigation.css";
+
+// Hooks
 import useClickOutside from "../../../hooks/useClickOutside.js";
 import useWindowWidth from "../../../hooks/useWindowWidth.js";
-import {React, useState, useRef, useEffect } from "react";
+
+// React
+import { React, useState, useRef, useEffect, useContext } from "react";
+
+// Components
 import Button from "../NavigationButton/Button.jsx";
 import DropDownMenu from "./DropDownMenu/drop_menu.jsx";
-import { Link } from "react-router-dom";
-import UserIco from  "../icons/User_ico.svg"
-import CartIco from  "../icons/Cart_ico.svg"
-import SearchIco from  "../icons/Search_ico.svg"
-import ListIco from  "../icons/TEMP_List_ico.svg"
-import Clear from "../icons/Clear_ico.svg"
 import RegistrationForm from "./RegisterForm/RegisterFormContent.jsx"
 import Modal from "../Modals/Modal.jsx";
-import CartModalContent from "./CartModalContent/CartModalContent.jsx";
+import CartModalContent from './CartModalContent/CartModalContent.jsx';
+
+// icos
+import UserIco from "../icons/User_ico.svg";
+import CartIco from "../icons/Cart_ico.svg";
+import SearchIco from "../icons/Search_ico.svg";
+import ListIco from "../icons/TEMP_List_ico.svg";
+import Clear from "../icons/Clear_ico.svg";
+
+// API and app context
+import { Requests } from "../../../api/axios_queries/requests.js";
+import axiosClient from "../../../api/axios_queries/axios.js";
+import { AppContext } from "../../../context/AppContext.jsx";
+
+// Routing
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Navigation(){
     const [isDropOpen, setIsDropOpen] = useState(false);
     const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
     const [inputText, setInputText] = useState("");
+  
     const [isRegModalOpen, setIsRegModalOpen] = useState(false);
     const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+
+    const { setUserInfo, isUserAuthorized, setIsUserAuthorized} = useContext(AppContext);
+    const navigate = useNavigate();
+
 
     const registerModalRef = useRef(null);
     const cartModalRef = useRef(null);
@@ -28,29 +50,52 @@ function Navigation(){
 
     useClickOutside([menuRef, menuButtonRef], isDropOpen, () => setIsDropOpen(false));
     const windowWidth = useWindowWidth();
-    
+
+    useEffect(() => {
+        const requests = new Requests(axiosClient);
+        const getUserInfo = async () => {
+            let res
+            try {
+                res = await requests.getUserInfo();
+                setUserInfo(res.data);
+                setIsUserAuthorized(true);
+
+            } catch (error) {
+                if (error.response?.status === 401) {
+                    setIsUserAuthorized(false);
+                    setUserInfo(null);
+                }
+            }
+        }
+            getUserInfo();
+    }, [setIsUserAuthorized, setUserInfo ]);
+
+    // code to show user data
+    // useEffect(() => {
+    //     console.log(`USER DATA IS ${JSON.stringify(userInfo)}`);
+    // }, [userInfo]); // Этот useEffect сработает, когда userInfo изменится
+
     useEffect(() => {
        if (inputText.length !== 0){
             setIsClearButtonOpen(true);
-       } 
+       }
        else{
         setIsClearButtonOpen(false);
        }
     }, [inputText]);
 
-    const checkWindowWider = (width) => {
-        if (windowWidth <= width){
-            return true;
-        } 
-        else {
-            setIsDropOpen(false);
-            return false;
-        }
-    }
-    const toggleMenu = () => {
-            setIsDropOpen(!isDropOpen);
-    } 
+    const checkWindowWider = (width) => windowWidth <= width;
 
+    const toggleMenu = () => {setIsDropOpen(!isDropOpen);}
+
+   function handleProfileButtonPressed() {
+        if (!isUserAuthorized){
+            setIsRegModalOpen(!isRegModalOpen);
+        }
+        else {
+            navigate('/profile');
+        }
+   }
    useClickOutside([registerModalRef], isRegModalOpen, () => 
     {
         setIsRegModalOpen(false)
@@ -62,7 +107,7 @@ function Navigation(){
 
     return(
         <div className="navi">
-            <div className="navigation-content">
+                        <div className="navigation-content">
                     <div className="search-pannel">
                         <Button><img className="ico" src={SearchIco} alt="Search" /></Button>
                         <input type="text" className="search-input navi-font" value={inputText} placeholder={"Пошук..."} onChange={e => setInputText(e.target.value)} id='navbar-input'/>
@@ -71,7 +116,7 @@ function Navigation(){
                     <div className="menu-buttons">
                     <Link to={"/menu"} className="link"><Button className="menu-button "><p className="navi-font">Меню</p></Button></Link>
                     <Button onClick={() => {setIsCartModalOpen(!isCartModalOpen)}}><img className="ico" src={CartIco} alt="Cart" /></Button>
-                    <Button onClick={() => {setIsRegModalOpen(!isRegModalOpen)}}><img className="ico" src={UserIco} alt="profile" /></Button>
+                    <Button onClick={handleProfileButtonPressed}><img className="ico" src={UserIco} alt="profile" /></Button>
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
