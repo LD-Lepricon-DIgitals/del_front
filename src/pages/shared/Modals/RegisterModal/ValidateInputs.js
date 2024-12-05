@@ -18,7 +18,7 @@ function ValidateRegisterInput(formValues){
         return { success: false, message: 'Пароль має містити більше 8 символів'};
     }
 
-    if (formValues['password'] !== formValues['a']){
+    if (formValues['password'] !== formValues['submit_password']){
         return { success: false, message: 'Паролі не співпадають!' };
     }
 

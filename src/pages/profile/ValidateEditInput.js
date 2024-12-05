@@ -1,7 +1,7 @@
 function ValidateEditInput(formValues){
     const emptyField = findEmptyField(formValues);
     if (emptyField) {
-        return {success: false, message: `Заповніть поле "${emptyField}"!`}
+        return {success: false, message: `Заповніть поле "${emptyField}"`}
     }
 
     if (!ValidateAdressLength(formValues['address'])){
@@ -9,7 +9,7 @@ function ValidateEditInput(formValues){
     }
 
     if (!ValidateNumber(formValues['phone_number'])){
-        return { success: false, message: 'Неправильний формат номеру!' };
+        return { success: false, message: 'Неправильний формат номеру' };
     }
 
     return {success: true} 

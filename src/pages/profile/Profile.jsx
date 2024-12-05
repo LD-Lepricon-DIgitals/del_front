@@ -4,6 +4,7 @@ import Navbar from "../shared/navigation/navigation.jsx";
 import Edit_ico from "../shared/icons/Edit_ico.svg";
 import Avatar_ico from "../shared/icons/Avatar_ico.svg";
 import Save_ico from "../shared/icons/Save_ico.svg"
+import Orders_ico from "../shared/icons/Orders_ico.svg"
 import { setTestUser, getTestUser } from "./TestUser.js";
 import ValidateEditInput from './ValidateEditInput.js'
 import Modal from "../shared/Modals/Modal.jsx";
@@ -11,7 +12,8 @@ import EditPasswordForm from "../shared/Modals/EditPasswordForm/EditPasswordForm
 import useClickOutside from "../../hooks/useClickOutside.js";
 
 
-function ProfileForm() {
+
+function ProfileForm({ user_role }) {
     const testUser = getTestUser();
     const [formValue, setFormValue] = useState(getTestUser());
     const [validationError, setValidationError] = useState(null);
@@ -19,10 +21,8 @@ function ProfileForm() {
     const [avatar, setAvatar] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
     const [isRegModalOpen, setIsRegModalOpen] = useState(false);
-    const [isCouier, setisCouier] = useState(true);
-
     const modalRef = useRef(null);
-   
+
 
     const toggleEdit = (e) => {
 
@@ -110,77 +110,89 @@ function ProfileForm() {
             <Navbar></Navbar>
             <p className={styles['data-title']}>{testUser.name + " " + testUser.patronymic}</p>
             <div className={styles.profile}>
-                <div className={styles['profile-content']}>
-                    <label className={styles.label}>Ім'я</label>
-                    <input className={styles['data-field']} type="text" id="name" value={formValue.name} onChange={(e) => handleInputChange('name', e.target.value)} disabled={!isEditable} />
+                <div className={styles['content']}>
+                    <div className={styles['profile-content']}>
+                        <label className={styles.label}>Ім'я</label>
+                        <input className={styles['data-field']} type="text" id="name" value={formValue.name} onChange={(e) => handleInputChange('name', e.target.value)} disabled={!isEditable} />
 
-                    <label className={styles.label}>Прізвище</label>
-                    <input className={styles['data-field']} type="text" id="surname" value={formValue.surname} onChange={(e) => handleInputChange('surname', e.target.value)} disabled={!isEditable} />
+                        <label className={styles.label}>Прізвище</label>
+                        <input className={styles['data-field']} type="text" id="surname" value={formValue.surname} onChange={(e) => handleInputChange('surname', e.target.value)} disabled={!isEditable} />
 
-                    <label className={styles.label}>По-батькові</label>
-                    <input className={styles['data-field']} type="text" id="patronymic" value={formValue.patronymic} onChange={(e) => handleInputChange('patronymic', e.target.value)} disabled={!isEditable} />
+                        <label className={styles.label}>По-батькові</label>
+                        <input className={styles['data-field']} type="text" id="patronymic" value={formValue.patronymic} onChange={(e) => handleInputChange('patronymic', e.target.value)} disabled={!isEditable} />
 
-                    {!isCouier && (
-                        <>
-                            <label className={styles.label}>Адреса</label>
-                            <input className={styles['data-field']} type="text" id="address" value={formValue.address} onChange={(e) => handleInputChange('address', e.target.value)} disabled={!isEditable} />
-                        </>
-                        
-                    )}
-                    
-                    <label className={styles.label}>Номер телефону</label>
-                    <input className={styles['data-field']} type="text" id="phone" value={formValue.phone_number} onChange={(e) => handleInputChange('phone_number', e.target.value)} disabled={!isEditable} />
-                    
-                    <div className={styles['edit-container']}>
-                        <button onClick={(e) => toggleEdit(e)} class={styles['edit-btn']}>
-                            {isEditable ? (<img src={Save_ico} alt='save icon' className={styles['edit-icon']}/>) : (<img src={Edit_ico} alt='edit icon' className={styles['edit-icon']}/>)}
-                            {isEditable ? 'Зберегти' : 'Змінити'}
-                        </button>
-                        <button onClick={OpenModalOnClick} class={styles['edit-btn']}>
-                            <img src={Edit_ico} alt='edit icon' className={styles['edit-icon']} />
-                            Змінити пароль
-                        </button>
-                    </div>
-                    {(validationError !== null) && (
-                        <p className={styles['validaton-error']}>{validationError}</p>
-                    )}
-                    {isRegModalOpen && (
-                        <Modal ref={modalRef} isOpen={isRegModalOpen}>
-                            <EditPasswordForm onClose={() => setIsRegModalOpen(false)}/>
-                        </Modal>
-                    )}
-
-
-                </div>
-                <div>
-                    <div className={styles['avatar-container']}>
-                        <img
-                            src={avatar || Avatar_ico}
-                            alt='Avatar'
-                            className={styles['avatar-img']}
-                        />
-                        {isVisible && (
+                        {!(user_role === "courier") && (
                             <>
-                                <label htmlFor="file-input" className={styles['file-input']} >
-                                    <img src={Edit_ico} alt='edit icon' className={styles['edit-avatar-icon']} />
-                                </label>
-                                <input
-                                    id='file-input'
-                                    type='file'
-                                    accept='image/*'
-                                    onChange={handleImageChange}
-                                    className={styles['hidden-input']}
-                                />
+                                <label className={styles.label}>Адреса</label>
+                                <input className={styles['data-field']} type="text" id="address" value={formValue.address} onChange={(e) => handleInputChange('address', e.target.value)} disabled={!isEditable} />
                             </>
-                        )}
+                        )} 
+                        
+                        <label className={styles.label}>Номер телефону</label>
+                        <input className={styles['data-field']} type="text" id="phone" value={formValue.phone_number} onChange={(e) => handleInputChange('phone_number', e.target.value)} disabled={!isEditable} />
+                        
+                        
+
 
                     </div>
+                    <div className={styles['avatar-container']}>
+                        <div className={styles['avatar']}>
+                            <img
+                                src={avatar || Avatar_ico}
+                                alt='Avatar'
+                                className={styles['avatar-img']}
+                            />
+                            {isVisible && (
+                                <>
+                                    <label htmlFor="file-input" className={styles['file-input']} >
+                                        <img src={Edit_ico} alt='edit icon' className={styles['edit-avatar-icon']} />
+                                    </label>
+                                    <input
+                                        id='file-input'
+                                        type='file'
+                                        accept='image/*'
+                                        onChange={handleImageChange}
+                                        className={styles['hidden-input']}
+                                    />
+                                </>
+                            )}
 
-                    {isCouier && (
+                        </div>
+                        {user_role === "courier" && (
                             <div className={styles['role']}>Кур'єр</div>
                         )}
+                    </div>
                 </div>
                 
+                <div className={styles['edit-container']}>
+                    <button onClick={(e) => toggleEdit(e)} class={styles['edit-btn']}>
+                        {isEditable ? (<img src={Save_ico} alt='save icon' className={styles['edit-icon']}/>) : (<img src={Edit_ico} alt='edit icon' className={styles['edit-icon']}/>)}
+                        {isEditable ? 'Зберегти' : 'Змінити'}
+                    </button>
+                    <button onClick={OpenModalOnClick} class={styles['edit-btn']}>
+                        <img src={Edit_ico} alt='edit icon' className={styles['edit-icon']} />
+                        Змінити пароль
+                    </button>
+                    {user_role == "courier" && (
+                        <button  onClick={(e) => toggleEdit(e)} class={styles['edit-btn']}>
+                            <img src={Orders_ico} alt='edit icon' className={styles['edit-icon']} />
+                            До замовлень
+                        </button>
+                    )}
+
+                    
+                </div>
+                <div className={styles['validaton-error']}>
+                    {(validationError !== null) && (
+                        <p>{validationError}</p>
+                    )}
+                </div>
+                
+                {isRegModalOpen && (
+                    <Modal ref={modalRef} isOpen={isRegModalOpen}>
+                        <EditPasswordForm onClose={() => setIsRegModalOpen(false)}/>
+                    </Modal>
+                )}
 
             </div>
 

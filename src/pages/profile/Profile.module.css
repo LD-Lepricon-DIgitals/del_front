@@ -4,12 +4,18 @@
     --font-family: "Montserrat Alternates", sans-serif;
 }
 
-.profile-page {
-    background: url('../shared/img/Background.svg') no-repeat bottom center,
-        #FFF5D1;
-    background-size: contain, cover;
-    padding-bottom: 2%;
+body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    z-index: -1;
+    background: url("../shared/img/Background.svg") no-repeat bottom center;
+    background-size: cover;
 }
+
 
 .data-title {
     font-family: "Montserrat Alternates", sans-serif;
@@ -22,6 +28,11 @@
     border: 1px solid #9DDF6B;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    margin: 4vw;
+    margin-top: 0;
+    width: fit-content;
+
 }
 
 .profile-content {
@@ -88,9 +99,16 @@
     margin-right: 0.5vw;
 }
 
-.avatar-container {
+.avatar {
     position: relative;
     overflow: hidden;
+}
+
+.avatar-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vw;
 }
 
 .validaton-error{
@@ -105,24 +123,30 @@
 
 }
 
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .profile-page {
-        height: 100vh;
+        height: 100%;
     }
 
     .data-title {
-        font-size: 7vw;
-        margin: 3vw;
+        font-size: 4vw;
+        margin: 2vw;
         margin-left: 4vw;
     }
 
     .profile {
-        width: 80vw;
-        padding: 3vh;
+        width: 85vw;
+        padding: 3vw;
         flex-direction: row;
-        margin: 3vw;
         border-radius: 35px;
+        margin-left: 5vw;
 
     }
 
@@ -131,56 +155,78 @@
     }
 
     .label {
-        font-size: 3vw;
+        font-size: 2vw;
         margin: 0.5vh;
     }
 
     .data-field {
-        font-size: 4.5vw;
+        font-size: 2.5vw;
         width: 32vw;
-        height: 3.5vh;
-        border: 2px solid #9EDF6D;
-        margin-bottom: 2vh;
+        height: 2.5vh;
+        border: 1px solid #9EDF6D;
+        margin-bottom: 2vw;
         padding: 2vw;
         border-radius: 10px;
     
     }
 
+    .edit-container {
+        width: 100%;
+        display: flex;
+        margin: 2vw;
+        gap: 3vw;
+
+    }
     .edit-btn {
-        font-size: 3vw;
-        height: 5vh;
-        margin-top: 3vw;
+        font-size: 2vw;
+        height: 5vw;        
         width: 100%;
         border-radius: 8px;
     }
 
     .edit-icon {
-        width: 4vw;
+        width: 3vw;
         margin-right: 1.5vw;
     }
 
-    .avatar-container {
-        width: 35vw;
-        height: 35vw;
+    .avatar {
+        width: 27vw;
+        height: 27vw;
         border-radius: 50px;
-        margin-top: 5vw;
-        margin-left: 8vw;
+    }
+
+    .avatar-container{
+        display: flex;
+        align-items: center;
+        margin-left: 7vw;
     }
 
     .file-input {
-        height: 25%;
+        height: 20%;
     }
 
     .edit-avatar-icon {
-        width: 25px;
+        width: 35px;
     }
 
     .validaton-error {
         font-family: "Montserrat Alternates", sans-serif;
-        font-size: 3vw;
+        font-size: 2vw;
         font-weight: 600;
         color: #B9141D;
         text-align: center;
+        align-self: center;
+        justify-self: center;
+        margin: 0.5vw;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .role {
+        margin-top: 1vw;
+        font-size: 2.5vw;
     }
 }
 
@@ -191,13 +237,13 @@
     }
 
     .data-title {
-        font-size: 10vw;
-        margin: 3vw;
+        font-size: 7vw;
+        margin: 4vw;
     }
 
     .profile {
         width: 80vw;
-        padding: 3vh;
+        padding: 6vw;
         flex-direction: row;
         margin: 3vw;
         border-radius: 35px;
@@ -209,39 +255,50 @@
     }
 
     .label {
-        font-size: 4vw;
+        font-size: 2vw;
         margin: 0.5vh;
     }
 
     .data-field {
-        font-size: 4vw;
-        width: 38vw;
-        height: 3.5vh;
-        border: 2px solid #9EDF6D;
-        margin-bottom: 1.5vh;
+        font-size: 3vw;
+        width: 35vw;
+        height: 5vw;
+        border: 1px solid #9EDF6D;
+        margin-bottom: 1.5vw;
         padding: 0.8vw;
         border-radius: 5px;
     }
 
     .edit-btn {
-        font-size: 3.5vw;
-        height: 4vh;
-        margin-top: 4vw;
-        width: 100%;
-        border-radius: 5px;
+        font-size: 2.5vw;
+        height: 6vw;        
+        width: 40%;
+        border-radius: 1vw;
     }
 
     .edit-icon {
-        width: 5vw;
+        width: 4vw;
         margin-right: 1.5vw;
     }
 
-    .avatar-container {
-        width: 35vw;
-        height: 35vw;
-        border-radius: 25px;
-        margin-top: 7vw;
-        margin-left: 5vw;
+    .edit-container {        
+        margin-top: 3vw;
+        display: flex;
+        gap: 1.5vw;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .avatar-container{
+        margin-left: 3vw;
+    }
+    
+    .avatar {
+        width: 30vw;
+        height: 30vw;
+        border-radius: 7vw;        
+        margin-top: 2vw;
     }
 
     .file-input {
@@ -259,6 +316,11 @@
         color: #B9141D;
         text-align: center;
     }
+
+    .role {
+        font-size: 15px;
+        margin-top: 1vh;
+    }
 }
 
 
@@ -268,47 +330,46 @@
     }
 
     .data-title {
-        font-size: 5vw;
+        font-size: 3.5vw;
         margin: 2vw;
-        margin-left: 4vw
+        margin-left: 5vw
     }
 
     .profile {
-        width: 83vw;
+        width: 72vw;
         height: 100%;
-        padding: 4vh;
-        margin: 2vw;
+        padding: 2vh;
         border-radius: 53.5px;
         padding: 3vw;
         display: flex;
         justify-content: center;
+        margin-left: 4vw;
     }
 
     .profile-content {
-        width: 40vw;
+        width: 37vw;
     }
 
     .label {
-        font-size: 2vw;
+        font-size: 1.5vw;
         margin: 1vh;
     }
 
     .data-field {
-        font-size: 3vw;
-        width: 38vw;
-        height: 8vh;
-        border: 3.5px solid #9EDF6D;
-        padding: 0.8vw;
+        font-size: 2vw;
+        width: 32vw;
+        height: 2.5vw;
+        border: 2px solid #9EDF6D;
+        padding: 1vw;
         border-radius: 10px;
-        margin-bottom: 2vh;
+        margin-bottom: 1vw;
     }
 
     .edit-btn {
         font-size: 1.5vw;
-        width: 18vw;
-        height: 10vh;
+        width: 20vw;
+        height: 4vw;        
         border-radius: 10px;
-        margin-top: 2vw;
 
     }
 
@@ -317,6 +378,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
+        margin-top: 2vw;
+        gap: 3vw;
     }
 
     .edit-icon {
@@ -325,12 +388,10 @@
     }
 
 
-    .avatar-container {
-        width: 26vw;
-        height: 26vw;
-        border-radius: 60px;
-        margin-top: 3.5vw;
-        margin-left: 6.5vw;
+    .avatar {
+        width: 20vw;
+        height: 20vw;
+        border-radius: 4vw;
     }
 
     .validaton-error {
@@ -340,16 +401,15 @@
         color: #B9141D;
         text-align: center;
         align-self: center;
-        margin-top: 3vw;
+        margin-top: 1vw;
     }
 
     .edit-avatar-icon {
-        width: 60px;
+        width: 50px;
     }
 
     .role {
-        font-size: 50px;
-        margin-left: 6.5vw;
+        font-size: 2vw;
         margin-top: 2vh;
     }
 }
