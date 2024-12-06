@@ -33,37 +33,37 @@
 }
 
 .modal--entering {
-    opacity: 1; /* Прозрачность при появлении модального окна */
+    opacity: 1; /* opacity for modal */
 }
 
 .modal--entering .modal-content {
-    opacity: 1; /* Прозрачность контента */
-    transform: translateY(0); /* Возвращаем контент в исходное положение */
+    opacity: 1; /* opacity of content */
+    transform: translateY(0); /* returm content to default position */
 }
 
 .modal--entered {
-    opacity: 1; /* Полная видимость модального окна */
+    opacity: 1; /* show modal*/
 }
 
 .modal--entered .modal-content {
-    opacity: 1; /* Полная видимость контента */
-    transform: translateY(0); /* Окончательная позиция контента */
+    opacity: 1; /* show content*/
+    transform: translateY(0); /* content position */
 }
 
 .modal--exiting {
-    opacity: 0; /* Прозрачность при скрытии */
+    opacity: 0; /* opacity to hide*/
 }
 
 .modal--exiting .modal-content {
-    opacity: 0; /* Прозрачность контента при скрытии */
-    transform: translateY(-50px); /* Контент смещается вверх при скрытии */
+    opacity: 0; /* opacity of content to hide* */
+    transform: translateY(-50px); /* shift up content */
 }
 
 .modal--exited {
-    opacity: 0; /* Окончательное скрытие */
+    opacity: 0; /* modal hide*/
 }
 
 .modal--exited .modal-content {
     opacity: 0;
-    transform: translateY(-50px); /* Окончательное смещение */
+    transform: translateY(-50px); /* modal and content shift*/
 }
