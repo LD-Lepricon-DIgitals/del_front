@@ -8,7 +8,8 @@ export const AppProvider = ({children}) => {
         user_name: '',
         user_surname: '',
         user_address: '',
-        user_phone : ''
+        user_phone : '',
+        user_role : ''
     }
 
     const [userInfo, setUserInfo] = useState(initValues);

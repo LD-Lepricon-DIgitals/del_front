@@ -1,21 +1,23 @@
-import { useState, useRef } from 'react';
 import styles from './Profile.module.css';
 import Navbar from "../shared/navigation/navigation.jsx";
 import Edit_ico from "../shared/icons/Edit_ico.svg";
 import Avatar_ico from "../shared/icons/Avatar_ico.svg";
 import Save_ico from "../shared/icons/Save_ico.svg"
 import Orders_ico from "../shared/icons/Orders_ico.svg"
-import { setTestUser, getTestUser } from "./TestUser.js";
 import ValidateEditInput from './ValidateEditInput.js'
 import Modal from "../shared/Modals/Modal.jsx";
 import EditPasswordForm from "../shared/Modals/EditPasswordForm/EditPasswordForm.jsx"
 import useClickOutside from "../../hooks/useClickOutside.js";
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from "../../context/AppContext.jsx";
+import { React, useState, useRef, useEffect, useContext } from "react";
+import Home_ico from '../shared/icons/Home_ico.svg'
 
 
 
-function ProfileForm({ user_role }) {
-    const testUser = getTestUser();
-    const [formValue, setFormValue] = useState(getTestUser());
+function ProfileForm() {    
+    const { userInfo, setUserInfo } = useContext(AppContext);
+    const [formValue, setFormValue] = useState({...userInfo});
     const [validationError, setValidationError] = useState(null);
     const [isEditable, setIsEditable] = useState(false);
     const [avatar, setAvatar] = useState(null);
@@ -53,7 +55,7 @@ function ProfileForm({ user_role }) {
 
         setValidationError(null);
 
-        setTestUser({ ...formValue });
+        setUserInfo({ ...formValue });
         setIsEditable(false);
     };
 
@@ -105,31 +107,36 @@ function ProfileForm({ user_role }) {
         setIsRegModalOpen(false)
     });
 
+    const navigate = useNavigate();
+    const gohome = () => {
+        navigate('/');
+    };
+    
     return (
         <div className={styles['profile-page']}>
             <Navbar></Navbar>
-            <p className={styles['data-title']}>{testUser.name + " " + testUser.patronymic}</p>
+            <p className={styles['data-title']}>{formValue.user_name + " " + formValue.user_surname}</p>
             <div className={styles.profile}>
                 <div className={styles['content']}>
                     <div className={styles['profile-content']}>
                         <label className={styles.label}>Ім'я</label>
-                        <input className={styles['data-field']} type="text" id="name" value={formValue.name} onChange={(e) => handleInputChange('name', e.target.value)} disabled={!isEditable} />
+                        <input className={styles['data-field']} type="text" id="name" value={formValue.user_name} onChange={(e) => handleInputChange('user_name', e.target.value)} disabled={!isEditable} />
 
                         <label className={styles.label}>Прізвище</label>
-                        <input className={styles['data-field']} type="text" id="surname" value={formValue.surname} onChange={(e) => handleInputChange('surname', e.target.value)} disabled={!isEditable} />
+                        <input className={styles['data-field']} type="text" id="surname" value={formValue.user_surname} onChange={(e) => handleInputChange('user_surname', e.target.value)} disabled={!isEditable} />
 
-                        <label className={styles.label}>По-батькові</label>
+                        {/* <label className={styles.label}>По-батькові</label>
                         <input className={styles['data-field']} type="text" id="patronymic" value={formValue.patronymic} onChange={(e) => handleInputChange('patronymic', e.target.value)} disabled={!isEditable} />
-
-                        {!(user_role === "courier") && (
+ */}
+                        {!(formValue.user_role === "courier") && (
                             <>
                                 <label className={styles.label}>Адреса</label>
-                                <input className={styles['data-field']} type="text" id="address" value={formValue.address} onChange={(e) => handleInputChange('address', e.target.value)} disabled={!isEditable} />
+                                <input className={styles['data-field']} type="text" id="address" value={formValue.user_address} onChange={(e) => handleInputChange('user_address', e.target.value)} disabled={!isEditable} />
                             </>
                         )} 
                         
                         <label className={styles.label}>Номер телефону</label>
-                        <input className={styles['data-field']} type="text" id="phone" value={formValue.phone_number} onChange={(e) => handleInputChange('phone_number', e.target.value)} disabled={!isEditable} />
+                        <input className={styles['data-field']} type="text" id="phone" value={formValue.user_phone} onChange={(e) => handleInputChange('user_phone', e.target.value)} disabled={!isEditable} />
                         
                         
 
@@ -158,7 +165,7 @@ function ProfileForm({ user_role }) {
                             )}
 
                         </div>
-                        {user_role === "courier" && (
+                        {formValue.user_role === "courier" && (
                             <div className={styles['role']}>Кур'єр</div>
                         )}
                     </div>
@@ -173,8 +180,8 @@ function ProfileForm({ user_role }) {
                         <img src={Edit_ico} alt='edit icon' className={styles['edit-icon']} />
                         Змінити пароль
                     </button>
-                    {user_role == "courier" && (
-                        <button  onClick={(e) => toggleEdit(e)} class={styles['edit-btn']}>
+                    {formValue.user_role === "courier" && (
+                        <button  onClick={(e) => toggleEdit(e)} className={styles['edit-btn']}>
                             <img src={Orders_ico} alt='edit icon' className={styles['edit-icon']} />
                             До замовлень
                         </button>
@@ -195,6 +202,10 @@ function ProfileForm({ user_role }) {
                 )}
 
             </div>
+
+            <button onClick = {() => gohome()} class={styles['home-btn']}>
+                <img src={Home_ico} className={styles['home-ico']}/>
+            </button>
 
         </div>
 

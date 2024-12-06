@@ -4,11 +4,11 @@ function ValidateEditInput(formValues){
         return {success: false, message: `Заповніть поле "${emptyField}"`}
     }
 
-    if (!ValidateAdressLength(formValues['address'])){
+    if (!ValidateAdressLength(formValues['user_address'])){
         return { success: false, message: 'Адреса закоротка або відсутня' };
     }
 
-    if (!ValidateNumber(formValues['phone_number'])){
+    if (!ValidateNumber(formValues['user_phone'])){
         return { success: false, message: 'Неправильний формат номеру' };
     }
 
@@ -29,8 +29,8 @@ function findEmptyField(formValues) {
     return null; 
 }
 
-function ValidateAdressLength(address){
-    if (address.length < 10){
+function ValidateAdressLength(user_address){
+    if (user_address.length < 10){
         return false;
     }
     return true

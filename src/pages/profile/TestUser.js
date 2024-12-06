@@ -1,5 +1,5 @@
 let testUser = {
-    name: 'Бургер',
+    name: 'Даша',
     surname: 'Бургер',
     patronymic: 'Бургерович',
     address: 'Хрещатик 12',

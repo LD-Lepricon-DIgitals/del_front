@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './RegisterForm.module.css';
 import TextInput from '../../Inputs/TextInput/TextInput.jsx';
 import PasswordInput from '../../Inputs/PasswordInput/PasswordInput.jsx';
@@ -7,10 +6,15 @@ import { ValidateLoginInput, ValidateRegisterInput } from './ValidateInputs.js'
 import { LoginUser, RegisterUser } from '../../../../api/UserServises.js';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../../../../context/AppContext.jsx';
+import { React, useState, useRef, useEffect, useContext } from "react";
+
+
 
 function RegistrationForm() {
     const [isRegistering, setIsRegistering] = useState(true);
     const [validationError, setValidationError] = useState(null);
+    const { userInfo, setUserInfo, isUserAuthorized, setIsUserAuthorized} = useContext(AppContext);
 
     const initialValues = {
         login: '',

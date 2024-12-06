@@ -9,11 +9,12 @@ body::before {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 30%;
+    width: 100vw;
+    height: 40vh;
     z-index: -1;
     background: url("../shared/img/Background.svg") no-repeat bottom center;
     background-size: cover;
+
 }
 
 
@@ -411,5 +412,18 @@ body::before {
     .role {
         font-size: 2vw;
         margin-top: 2vh;
+    }
+
+    .home-btn {
+        width: 5vw;
+        height: 5vw;
+        border-radius: 100%;
+        background-color: white;
+        margin-left: 5vw;
+    }
+
+    .home-ico {
+        width: 2.5vw;
+        
     }
 }
