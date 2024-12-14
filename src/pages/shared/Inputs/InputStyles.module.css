@@ -7,10 +7,12 @@
 }
 .hidden {
     opacity: 0;
+    background-color: #FEFEFD;
     visibility: hidden; 
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 .visible {
+    background-color: #FEFEFD;
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 .ico {

@@ -60,7 +60,7 @@ function ProfileForm() {
     setUserInfo({ ...updatedUserInfo });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let validate_res = ValidateEditInput(userInfo);
@@ -72,7 +72,7 @@ function ProfileForm() {
     setValidationError(null);
 
     try {
-      const response = requests.updateUserInfo({ ...userInfo });
+      const response = await requests.updateUserInfo({ ...userInfo });
       console.log("Дані успішно оновлено:", response);
       setIsEditable(false);
     } catch (error) {
@@ -80,15 +80,15 @@ function ProfileForm() {
     }
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
         const img = new Image();
         img.src = reader.result;
 
-        img.onload = () => {
+        img.onload = async () => {
           const canvas = document.createElement("canvas");
           const desiredWidth = 200;
           const desiredHeight = 200;
@@ -117,10 +117,10 @@ function ProfileForm() {
           setAvatar(croppedImageUrl);
 
           try {
-            const response = requests.changeAvatar(avatar);
+            const response = await requests.changeAvatar(croppedImageUrl); // Ensure this sends the correct avatar data
             console.log("Аватар успішно оновлено:", response);
           } catch (error) {
-            console.error("Помилка оновлення даних:", error);
+            console.error("Помилка оновлення аватара:", error);
           }
         };
       };
@@ -131,6 +131,7 @@ function ProfileForm() {
   function OpenModalOnClick() {
     setIsRegModalOpen(!isRegModalOpen);
   }
+
   useClickOutside([modalRef], isRegModalOpen, () => {
     setIsRegModalOpen(false);
   });
@@ -151,7 +152,7 @@ function ProfileForm() {
 
   return (
     <div className={styles["profile-page"]}>
-      <Navbar></Navbar>
+      <Navbar />
       <p className={styles["data-title"]}>
         {(userInfo.user_name || "") + " " + userInfo.user_surname}
       </p>
@@ -280,7 +281,7 @@ function ProfileForm() {
             <button onClick={() => goToOrders()} className={styles["edit-btn"]}>
               <img
                 src={Orders_ico}
-                alt="edit icon"
+                alt="orders icon"
                 className={styles["edit-icon"]}
               />
               До замовлень
