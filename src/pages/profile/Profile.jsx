@@ -12,7 +12,7 @@ import { AppContext } from "../../context/AppContext.jsx";
 import { React, useState, useRef, useEffect, useContext } from "react";
 import Home_ico from "../shared/icons/Home_ico.svg";
 import { Requests } from "../../api/axios_queries/requests.js";
-import axios from "axios";
+import axiosClient from "../../api/axios_queries/axios.js";
 
 function ProfileForm() {
   const { userInfo, setUserInfo } = useContext(AppContext);
@@ -24,7 +24,7 @@ function ProfileForm() {
   const [imageSrc, setImageSrc] = useState("");
   const navigate = useNavigate();
   const modalRef = useRef(null);
-  const requests = new Requests(axios);
+  const requests = new Requests(axiosClient);
 
   const toggleEdit = (e) => {
     setIsVisible(!isVisible);
@@ -72,7 +72,7 @@ function ProfileForm() {
     setValidationError(null);
 
     try {
-      const response = await requests.updateUserInfo({ ...userInfo });
+      const response = await requests.changeUserProfile({ ...userInfo });
       console.log("Дані успішно оновлено:", response);
       setIsEditable(false);
     } catch (error) {
@@ -112,13 +112,21 @@ function ProfileForm() {
             desiredWidth,
             desiredHeight
           );
-
+          
           const croppedImageUrl = canvas.toDataURL("image/jpeg");
-          setAvatar(croppedImageUrl);
+          const base64PhotoString = croppedImageUrl.split(',')[1];
+          
+          console.log("Base64 String without prefix:", base64PhotoString);
+
+          const payload = {
+            photo: base64PhotoString,
+          };
 
           try {
-            const response = await requests.changeAvatar(croppedImageUrl); // Ensure this sends the correct avatar data
+            const response = await requests.updatePhoto(payload); // Ensure this sends the correct avatar data
             console.log("Аватар успішно оновлено:", response);
+            setAvatar(base64PhotoString);
+            setImageSrc(croppedImageUrl);
           } catch (error) {
             console.error("Помилка оновлення аватара:", error);
           }
