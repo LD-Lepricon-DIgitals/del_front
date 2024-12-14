@@ -1,429 +1,439 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-    --font-family: "Montserrat Alternates", sans-serif;
+  --font-family: "Montserrat Alternates", sans-serif;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 40vh;
-    z-index: -1;
-    background: url("../shared/img/Background.svg") no-repeat bottom center;
-    background-size: cover;
-
+body {
+  position: relative;
+  margin: 0;
 }
 
+.profile-page:after {
+  content: ""; /* Обов'язковий для :after */
+  position: absolute; /* Абсолютне позиціонування */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%; /* Заповнює весь блок */
+  background: url("../shared/img/Background.svg") no-repeat bottom center;
+  background-size: cover; /* Масштабування фону */
+  z-index: -1; /* Фон під основним контентом */
+  opacity: 0.9; /* Невелика прозорість фону, якщо потрібно */
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 
 .data-title {
-    font-family: "Montserrat Alternates", sans-serif;
-    font-weight: 900;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 900;
 }
-
+.profile-page {
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+}
 .profile {
-    background-color: #FFFFFF;
-    opacity: 0.99;
-    border: 1px solid #9DDF6B;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 4vw;
-    margin-top: 0;
-    width: fit-content;
-
+  background-color: #ffffff;
+  opacity: 0.99;
+  border: 1px solid #9ddf6b;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 4vw;
+  margin-top: 0;
+  width: fit-content;
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
 }
 
 .profile-content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .label {
-    color: #7e7a7a;
-    font-family: 'Montserrat Alternates';
+  color: #7e7a7a;
+  font-family: "Montserrat Alternates";
 }
 
 .data-field {
-    font-family: 'Montserrat';
-    font-weight: 700;
-    color: black;
-    background-color: #f2f2f282;
+  font-family: "Montserrat Alternates";
+  font-weight: 700;
+  color: black;
+  background-color: #f2f2f282;
 }
 
 .avatar-img {
-    width: 100%;
+  width: 100%;
 }
 
 .file-input {
-    width: 100%;
-    height: 20%;
-    background-color: rgba(147, 137, 137, 0.8);
-    position: absolute;
-    bottom: 0;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1;
+  width: 100%;
+  height: 20%;
+  background-color: rgba(147, 137, 137, 0.8);
+  position: absolute;
+  bottom: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .file-input img {
-    opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 .edit-avatar-icon {
-    z-index: 2;
+  z-index: 2;
 }
 
 .hidden-input {
-    display: none;
+  display: none;
 }
 
 .edit-btn {
-    background-color: #9EDF6D;
-    font-family: 'Montserrat';
-    font-weight: 700;
-    color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    align-self: center;
+  background-color: #9edf6d;
+  font-family: "Montserrat Alternates";
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-self: center;
 }
 
 .edit-icon {
-    width: 3vw;
-    margin-right: 0.5vw;
+  width: 3vw;
+  margin-right: 0.5vw;
 }
 
 .avatar {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
-.avatar-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3vw;
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3vw;
 }
 
-.validaton-error{
-    font-family: 'Montserrat';
+.validaton-error {
+  font-family: "Montserrat";
 }
 
 .role {
-    font-family: var(--font-family);
-    font-weight: 900;
-    color: #FF0000;
-    text-align: center;
-
+  font-family: var(--font-family);
+  font-weight: 900;
+  color: #ff0000;
+  text-align: center;
 }
 
 .content {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.home-btn {
+  border-radius: 100%;
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .profile-page {
-        height: 100%;
-    }
+  .profile-page {
+    height: 100%;
+  }
 
-    .data-title {
-        font-size: 4vw;
-        margin: 2vw;
-        margin-left: 4vw;
-    }
+  .data-title {
+    font-size: 4vw;
+    margin: 2vw;
+    margin-left: 4vw;
+  }
 
-    .profile {
-        width: 85vw;
-        padding: 3vw;
-        flex-direction: row;
-        border-radius: 35px;
-        margin-left: 5vw;
+  .profile {
+    width: 85vw;
+    padding: 3vw;
+    flex-direction: row;
+    border-radius: 35px;
+    margin-left: 5vw;
+  }
 
-    }
+  .profile-content {
+    width: 35vw;
+  }
 
-    .profile-content{
-        width: 35vw;
-    }
+  .label {
+    font-size: 2vw;
+    margin: 0.5vh;
+  }
 
-    .label {
-        font-size: 2vw;
-        margin: 0.5vh;
-    }
+  .data-field {
+    font-size: 2.5vw;
+    width: 32vw;
+    height: 2.5vh;
+    border: 1px solid #9edf6d;
+    margin-bottom: 2vw;
+    padding: 2vw;
+    border-radius: 10px;
+  }
 
-    .data-field {
-        font-size: 2.5vw;
-        width: 32vw;
-        height: 2.5vh;
-        border: 1px solid #9EDF6D;
-        margin-bottom: 2vw;
-        padding: 2vw;
-        border-radius: 10px;
-    
-    }
+  .edit-container {
+    width: 100%;
+    display: flex;
+    margin: 2vw;
+    gap: 3vw;
+  }
+  .edit-btn {
+    font-size: 2vw;
+    height: 5vw;
+    width: 100%;
+    border-radius: 8px;
+  }
 
-    .edit-container {
-        width: 100%;
-        display: flex;
-        margin: 2vw;
-        gap: 3vw;
+  .edit-icon {
+    width: 3vw;
+    margin-right: 1.5vw;
+  }
 
-    }
-    .edit-btn {
-        font-size: 2vw;
-        height: 5vw;        
-        width: 100%;
-        border-radius: 8px;
-    }
+  .avatar {
+    width: 27vw;
+    height: 27vw;
+    border-radius: 50px;
+  }
 
-    .edit-icon {
-        width: 3vw;
-        margin-right: 1.5vw;
-    }
+  .avatar-container {
+    display: flex;
+    align-items: center;
+    margin-left: 7vw;
+  }
 
-    .avatar {
-        width: 27vw;
-        height: 27vw;
-        border-radius: 50px;
-    }
+  .file-input {
+    height: 20%;
+  }
 
-    .avatar-container{
-        display: flex;
-        align-items: center;
-        margin-left: 7vw;
-    }
+  .edit-avatar-icon {
+    width: 35px;
+  }
 
-    .file-input {
-        height: 20%;
-    }
+  .validaton-error {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 2vw;
+    font-weight: 600;
+    color: #b9141d;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    margin: 0.5vw;
+  }
 
-    .edit-avatar-icon {
-        width: 35px;
-    }
+  p {
+    margin: 0;
+  }
 
-    .validaton-error {
-        font-family: "Montserrat Alternates", sans-serif;
-        font-size: 2vw;
-        font-weight: 600;
-        color: #B9141D;
-        text-align: center;
-        align-self: center;
-        justify-self: center;
-        margin: 0.5vw;
-    }
-
-    p {
-        margin: 0;
-    }
-
-    .role {
-        margin-top: 1vw;
-        font-size: 2.5vw;
-    }
+  .role {
+    margin-top: 1vw;
+    font-size: 2.5vw;
+  }
 }
 
 @media (max-width: 768px) {
+  .profile-page {
+    height: 100vh;
+  }
 
-    .profile-page {
-        height: 100vh;
-    }
+  .data-title {
+    font-size: 7vw;
+    margin: 4vw;
+  }
 
-    .data-title {
-        font-size: 7vw;
-        margin: 4vw;
-    }
+  .profile {
+    width: 80vw;
+    padding: 6vw;
+    flex-direction: row;
+    margin: 3vw;
+    border-radius: 35px;
+  }
 
-    .profile {
-        width: 80vw;
-        padding: 6vw;
-        flex-direction: row;
-        margin: 3vw;
-        border-radius: 35px;
+  .profile-content {
+    width: 40vw;
+  }
 
-    }
+  .label {
+    font-size: 2vw;
+    margin: 0.5vh;
+  }
 
-    .profile-content{
-        width: 40vw;
-    }
+  .data-field {
+    font-size: 3vw;
+    width: 35vw;
+    height: 5vw;
+    border: 1px solid #9edf6d;
+    margin-bottom: 1.5vw;
+    padding: 0.8vw;
+    border-radius: 5px;
+  }
 
-    .label {
-        font-size: 2vw;
-        margin: 0.5vh;
-    }
+  .edit-btn {
+    font-size: 2.5vw;
+    height: 6vw;
+    width: 40%;
+    border-radius: 1vw;
+  }
 
-    .data-field {
-        font-size: 3vw;
-        width: 35vw;
-        height: 5vw;
-        border: 1px solid #9EDF6D;
-        margin-bottom: 1.5vw;
-        padding: 0.8vw;
-        border-radius: 5px;
-    }
+  .edit-icon {
+    width: 4vw;
+    margin-right: 1.5vw;
+  }
 
-    .edit-btn {
-        font-size: 2.5vw;
-        height: 6vw;        
-        width: 40%;
-        border-radius: 1vw;
-    }
+  .edit-container {
+    margin-top: 3vw;
+    display: flex;
+    gap: 1.5vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .edit-icon {
-        width: 4vw;
-        margin-right: 1.5vw;
-    }
+  .avatar-container {
+    margin-left: 3vw;
+  }
 
-    .edit-container {        
-        margin-top: 3vw;
-        display: flex;
-        gap: 1.5vw;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .avatar {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 7vw;
+    margin-top: 2vw;
+  }
 
-    .avatar-container{
-        margin-left: 3vw;
-    }
-    
-    .avatar {
-        width: 30vw;
-        height: 30vw;
-        border-radius: 7vw;        
-        margin-top: 2vw;
-    }
+  .file-input {
+    height: 25%;
+  }
 
-    .file-input {
-        height: 25%;
-    }
+  .edit-avatar-icon {
+    width: 25px;
+  }
 
-    .edit-avatar-icon {
-        width: 25px;
-    }
+  .validaton-error {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 3vw;
+    font-weight: 600;
+    color: #b9141d;
+    text-align: center;
+  }
 
-    .validaton-error {
-        font-family: "Montserrat Alternates", sans-serif;
-        font-size: 3vw;
-        font-weight: 600;
-        color: #B9141D;
-        text-align: center;
-    }
-
-    .role {
-        font-size: 15px;
-        margin-top: 1vh;
-    }
+  .role {
+    font-size: 15px;
+    margin-top: 1vh;
+  }
 }
 
-
 @media (min-width: 1024px) {
-    .profile-page {
-        height: 100%;
-    }
+  .profile-page {
+    height: 100%;
+  }
 
-    .data-title {
-        font-size: 3.5vw;
-        margin: 2vw;
-        margin-left: 5vw
-    }
+  .data-title {
+    font-size: 3.5vw;
+    margin: 2vw;
+    margin-left: 5vw;
+  }
 
-    .profile {
-        width: 72vw;
-        height: 100%;
-        padding: 2vh;
-        border-radius: 53.5px;
-        padding: 3vw;
-        display: flex;
-        justify-content: center;
-        margin-left: 4vw;
-    }
+  .profile {
+    width: 72vw;
+    height: 100%;
+    padding: 2vh;
+    border-radius: 53.5px;
+    padding: 3vw;
+    display: flex;
+    justify-content: center;
+    margin-left: 4vw;
+  }
 
-    .profile-content {
-        width: 37vw;
-    }
+  .profile-content {
+    width: 37vw;
+  }
 
-    .label {
-        font-size: 1.5vw;
-        margin: 1vh;
-    }
+  .label {
+    font-size: 1.5vw;
+    margin: 1vh;
+  }
 
-    .data-field {
-        font-size: 2vw;
-        width: 32vw;
-        height: 2.5vw;
-        border: 2px solid #9EDF6D;
-        padding: 1vw;
-        border-radius: 10px;
-        margin-bottom: 1vw;
-    }
+  .data-field {
+    font-size: 2vw;
+    width: 32vw;
+    height: 2.5vw;
+    border: 2px solid #9edf6d;
+    padding: 1vw;
+    border-radius: 10px;
+    margin-bottom: 1vw;
+  }
 
-    .edit-btn {
-        font-size: 1.5vw;
-        width: 20vw;
-        height: 4vw;        
-        border-radius: 10px;
+  .edit-btn {
+    font-size: 1.5vw;
+    width: 20vw;
+    height: 4vw;
+    border-radius: 10px;
+  }
 
-    }
+  .edit-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2vw;
+    gap: 3vw;
+  }
 
-    .edit-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        margin-top: 2vw;
-        gap: 3vw;
-    }
+  .edit-icon {
+    width: 2.5vw;
+    margin-right: 0.5vw;
+  }
 
-    .edit-icon {
-        width: 2.5vw;
-        margin-right: 0.5vw;
-    }
+  .avatar {
+    width: 20vw;
+    height: 20vw;
+    border-radius: 4vw;
+  }
 
+  .validaton-error {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 2vw;
+    font-weight: 600;
+    color: #b9141d;
+    text-align: center;
+    align-self: center;
+    margin-top: 1vw;
+  }
 
-    .avatar {
-        width: 20vw;
-        height: 20vw;
-        border-radius: 4vw;
-    }
+  .edit-avatar-icon {
+    width: 50px;
+  }
 
-    .validaton-error {
-        font-family: "Montserrat Alternates", sans-serif;
-        font-size: 2vw;
-        font-weight: 600;
-        color: #B9141D;
-        text-align: center;
-        align-self: center;
-        margin-top: 1vw;
-    }
+  .role {
+    font-size: 2vw;
+    margin-top: 2vh;
+  }
 
-    .edit-avatar-icon {
-        width: 50px;
-    }
+  .home-btn {
+    width: 5vw;
+    height: 5vw;
+    background-color: #fff5d1;
+  }
 
-    .role {
-        font-size: 2vw;
-        margin-top: 2vh;
-    }
-
-    .home-btn {
-        width: 5vw;
-        height: 5vw;
-        border-radius: 100%;
-        background-color: white;
-        margin-left: 5vw;
-    }
-
-    .home-ico {
-        width: 2.5vw;
-        
-    }
+  .home-ico {
+    width: 2vw;
+    height: 2vw;
+  }
 }

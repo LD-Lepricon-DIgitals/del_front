@@ -1,48 +1,35 @@
-import { getTestUser, setTestUser } from "../../../profile/TestUser";
+function ValidatePasswordEdit(userPassword) {
+  console.log(userPassword);
 
-const testUser = getTestUser();
+  const emptyField = findEmptyField(userPassword);
 
-function ValidatePasswordEdit(formValues){
+  if (emptyField) {
+    return { success: false, message: `Заповніть поле "${emptyField}"!` };
+  }
+  if (!ValidatePasswordLength(userPassword["old_password"])) {
+    return { success: false, message: "Пароль має містити більше 8 символів" };
+  }
+  if (!ValidatePasswordLength(userPassword["new_password"])) {
+    return { success: false, message: "Пароль має містити більше 8 символів" };
+  }
+  return { success: true };
 
-    const emptyField = findEmptyField(formValues);
-
-    if (emptyField) {
-        return {success: false, message: `Заповніть поле "${emptyField}"!`}
-    }
-    if(!PasswordCheck(formValues['password'])){
-        return { success: false, message: 'Неправильний пароль'};
-    }
-    if (!ValidatePasswordLength(formValues['password'])){
-        return { success: false, message: 'Пароль має містити більше 8 символів'};
-    }
-    if (!ValidatePasswordLength(formValues['new_password'])){
-        return { success: false, message: 'Пароль має містити більше 8 символів'};
-    }
-    return {success: true}
-} 
-
-function ValidatePasswordLength(password){
-    if (password.length < 8){
-        return false;
+  function ValidatePasswordLength(password) {
+    if (password.length < 8) {
+      return false;
     }
 
     return true;
-}
+  }
 
-function PasswordCheck(prop) {
-    if(!(prop == testUser.password)) {
-        return false;
+  function findEmptyField(userPassword) {
+    for (let key in userPassword) {
+      if (userPassword[key].length <= 0) {
+        return key;
+      }
     }
-    return true;
-
+    return null;
+  }
 }
 
-function findEmptyField(formValues) {
-    for (let key in formValues) {
-        if (formValues[key].length <= 0) {
-            return key; 
-        }
-    }
-    return null; 
-}
 export default ValidatePasswordEdit;

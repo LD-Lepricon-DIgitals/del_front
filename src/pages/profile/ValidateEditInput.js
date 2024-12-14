@@ -12,6 +12,10 @@ function ValidateEditInput(formValues){
         return { success: false, message: 'Неправильний формат номеру' };
     }
 
+    if (!ValidateLoginLength(formValues['user_login'])){
+        return { success: false, message: 'Логін має містити не менше 8 символів'};
+    }
+
     return {success: true} 
 }
 
@@ -27,6 +31,13 @@ function findEmptyField(formValues) {
         }
     }
     return null; 
+}
+
+function ValidateLoginLength(user_login){
+    if (user_login.length < 8){
+        return false;
+    }
+    return true
 }
 
 function ValidateAdressLength(user_address){
