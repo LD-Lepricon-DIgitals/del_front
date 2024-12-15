@@ -8,7 +8,6 @@ import {ValidateLoginInput, ValidateRegisterInput} from './ValidateInputs.js'
 import { Requests } from '../../../../api/axios_queries/requests.js';
 import axiosClient from '../../../../api/axios_queries/axios.js';
 import { AppContext } from '../../../../context/AppContext.jsx'; 
-
 function RegistrationForm() {
     const [isRegistering, setIsRegistering] = useState(true);
     const [validationError, setValidationError] = useState(null);
@@ -85,6 +84,7 @@ function RegistrationForm() {
                 setUserInfo(userInfo.data);
                 navigate('/profile');
                 setFormValues(initialValues);
+
             }
         } catch (err) {
             handleApiError(err);
@@ -94,7 +94,7 @@ function RegistrationForm() {
     
     const handleApiError = (err) => {
         console.log(err);
-        if (isRegistering && err.response?.status === 409) {
+                if (isRegistering && err.response?.status === 409) {
             alert("Користувач вже існує!");
         } else if (!isRegistering && err.response?.status === 404) {
             alert("Користувача не знайдено! Перевірте логін та пароль!");
