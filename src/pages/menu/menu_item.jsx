@@ -5,11 +5,14 @@ function MenuItem(props){
     
     return(
         <div className={styles["item"]}>
-            <img src={props.img} className={styles["dish-ico"]}/>
-                <p>{props.name}</p>
+            <div className={styles["name-container"]}>
+                <img src={props.img} className={styles["dish-ico"]}/>
+                <p className={styles["name"]}>{props.name}</p>
+            </div>
+            
             <div className={styles["container"]}>
-                <p>{props.category}</p>
-                <p>{props.price}</p>
+                <p className={styles["category"]}>{props.category}</p>
+                <button className={styles["price"]}>{props.price}</button>
             </div>
         </div>
     );
