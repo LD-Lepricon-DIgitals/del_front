@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap');
+
+.navi-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: 'Montserrat';
+    font-weight: 900;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-self: left;
+    margin-left: 100px;
+
+}
+
+.container{
+    width: 80%;
+    justify-self: center;
+}
+
+
+.search-pannel {
+    display: flex;
+    flex-direction: row;
+    background-color: white;    
+}
+
+
+.select {
+    height: 100%;
+    border: none;
+    outline: none; 
+    font-family: "Manrope", sans-serif;
+    padding: 1vw;
+    color: black;
+}
+.search-input {
+    border: none;
+    width: 90%;
+    outline: none; 
+    font-family: "Manrope", sans-serif;
+    padding: 5px;
+
+}
+
+
+.menu-container {
+    background-color: #FFFFFF;
+    border: solid 1px #9DDF6B;
+    border-radius: 53px;
+    padding: 3vw;
+    gap: 6vw;
+}
+
+@media (max-width: 768px) {
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1024px) {
+    .navi-container{
+        margin-right: 50px;
+    }
+    .title {
+        font-size: 3.5vw;
+        margin: 15px;
+    }
+
+    .search-container {
+        margin: 3%;
+        height: 60px;
+        gap: 2vw;
+    }
+    .search-pannel {
+        border-radius: 53px;
+        width: 80%;        
+    }
+    .select {
+        width: 13vw;
+        border-radius: 53px;
+        font-size: 18px;
+    }
+    .select-option{
+        font-size: 18px;
+    }
+    .search-ico {
+        width: 20px;
+    }
+    .search-input {
+        font-size: 18px;
+    }
+    .clear-ico {
+        width: 15px;
+    }
+
+}
