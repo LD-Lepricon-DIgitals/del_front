@@ -117,6 +117,11 @@ body {
   margin-right: 0.5vw;
 }
 
+.edit-avatar-icon {
+  width: 3vw;
+  margin-right: 0.5vw;
+}
+
 .avatar {
   position: relative;
   overflow: hidden;
@@ -149,6 +154,14 @@ body {
 
 .home-btn {
   border-radius: 100%;
+  width: 5vw;
+  height: 5vw;
+  background-color: #fff5d1;
+}
+
+.home-ico {
+  width: 2vw;
+  height: 2vw;
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -200,11 +213,6 @@ body {
     height: 5vw;
     width: 100%;
     border-radius: 8px;
-  }
-
-  .edit-icon {
-    width: 3vw;
-    margin-right: 1.5vw;
   }
 
   .avatar {
@@ -304,6 +312,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
 
   .avatar-container {
@@ -424,16 +433,5 @@ body {
   .role {
     font-size: 2vw;
     margin-top: 2vh;
-  }
-
-  .home-btn {
-    width: 5vw;
-    height: 5vw;
-    background-color: #fff5d1;
-  }
-
-  .home-ico {
-    width: 2vw;
-    height: 2vw;
   }
 }
