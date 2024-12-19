@@ -1,0 +1,14 @@
+.item {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    gap: 8px;
+    border: solid 4px #9DDF6B;
+    border-radius: 53px;
+    padding: 5px 12px;
+    margin: 20px 0;
+    font-family: 'Montserrat';
+    font-weight: 900;
+}
