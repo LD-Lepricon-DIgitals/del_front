@@ -1,17 +1,19 @@
 import styles from "./Profile.module.css";
+import "../shared/styles/wrapper.css";
 import Navbar from "../shared/navigation/navigation.jsx";
 import Edit_ico from "../shared/icons/Edit_ico.svg";
+import HomeButton from '../shared/HomeButton/HomeButton'
 import Save_ico from "../shared/icons/Save_ico.svg";
 import Orders_ico from "../shared/icons/Orders_ico.svg";
 import ValidateEditInput from "./ValidateEditInput.js";
-import Modal from "../shared/Modals/Modal.jsx";
-import EditPasswordForm from "../shared/Modals/EditPasswordForm/EditPasswordForm.jsx";
+import Modal from "../shared/Modal/Modal.jsx";
+import EditPasswordForm from "./components/EditPasswordForm/EditPasswordForm.jsx";
 import useClickOutside from "../../hooks/useClickOutside.js";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext.jsx";
 import { React, useState, useRef, useEffect, useContext } from "react";
-import Home_ico from "../shared/icons/Home_ico.svg";
 import { Requests } from "../../api/axios_queries/requests.js";
+import { Link } from "react-router-dom";
 import axiosClient from "../../api/axios_queries/axios.js";
 
 function ProfileForm() {
@@ -159,12 +161,13 @@ function ProfileForm() {
   }, [userInfo]);
 
   return (
-    <div className={styles["profile-page"]}>
+    <div className="wrapper">
       <Navbar />
+      <div className={styles["page-content"]}>
+      <div className={styles["profile"]}>
       <p className={styles["data-title"]}>
         {(userInfo.user_name || "") + " " + userInfo.user_surname}
       </p>
-      <div className={styles["profile"]}>
         <div className={styles["content"]}>
           <div className={styles["profile-content"]}>
             <label className={styles["label"]}>Ім'я</label>
@@ -255,9 +258,6 @@ function ProfileForm() {
               <div className={styles["role"]}>Кур'єр</div>
             )}
           </div>
-          <button onClick={() => goHome()} className={styles["home-btn"]}>
-            <img src={Home_ico} className={styles["home-ico"]} />
-          </button>
         </div>
 
         <div className={styles["edit-container"]}>
@@ -305,7 +305,9 @@ function ProfileForm() {
             <EditPasswordForm onClose={() => setIsRegModalOpen(false)} />
           </Modal>
         )}
+        <Link to="/"><HomeButton/></Link>
       </div>
+    </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ function Menu(){
         <div>
             <Navbar/>
             <Link to="/"><HomeButton/></Link>
+        
         </div>
     );
 }

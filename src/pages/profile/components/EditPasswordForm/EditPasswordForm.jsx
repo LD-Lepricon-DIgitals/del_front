@@ -1,8 +1,8 @@
 import styles from "./EditPasswordForm.module.css";
 import ValidatePasswordEdit from "./ValidatePassword.js";
-import Save_ico from "../../icons/Save_ico.svg";
-import Hide_ico from "../../icons/Hide_ico.svg";
-import Show_ico from "../../icons/Show_ico.svg";
+import Save_ico from "../../../shared/icons/Save_ico.svg";
+import Hide_ico from "../../../shared/icons/Hide_ico.svg";
+import Show_ico from "../../../shared/icons/Show_ico.svg";
 import { Requests } from "../../../../api/axios_queries/requests.js";
 import { AppContext } from "../../../../context/AppContext.jsx";
 import { React, useState, useRef, useEffect, useContext } from "react";
