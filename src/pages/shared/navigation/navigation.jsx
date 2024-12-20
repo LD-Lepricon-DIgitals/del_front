@@ -120,7 +120,10 @@ function Navigation({ cartItems = [] }){
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
-            <DropDownMenu ref={menuRef} isOpen={isDropOpen && checkWindowWider(550)}></DropDownMenu>
+            <DropDownMenu ref={menuRef} isOpen={isDropOpen && checkWindowWider(550)} 
+                        setIsOpen={setIsDropOpen} handleProfileButtonPressed={handleProfileButtonPressed} 
+                        setIsCartModalOpen={setIsCartModalOpen}></DropDownMenu>
+            
             <Modal ref={registerModalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
             <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent cartItems={cartItems}s/></Modal>
         </div>

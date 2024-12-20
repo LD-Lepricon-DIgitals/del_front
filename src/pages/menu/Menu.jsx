@@ -159,6 +159,7 @@ function Menu() {
           )}
         </div>
       </div>
+      <Link to="/"><HomeButton/></Link>
     </div>
   );
 }
