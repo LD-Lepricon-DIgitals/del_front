@@ -11,6 +11,41 @@ function Menu() {
   const [selectedGroup, setselectedGroup] = useState("");
   const [inputText, setInputText] = useState("");
   const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [menuItems, setMenuItems] = useState([
+    {
+      name: "Бургер “Біфштекс на грилі”",
+      category: "Fast Food",
+      price: "10$",
+      img: Burger,
+    },
+    {
+      name: "Піца “Мама-Сіта“",
+      category: "Fast Food",
+      price: "10$",
+      img: Burger,
+    },
+    {
+      name: "Паста “358 і один сир”",
+      category: "Pasta",
+      price: "10$",
+      img: Burger,
+    },
+    {
+      name: "Піца “Пармезано, Федольфо”",
+      category: "Fast Food",
+      price: "10$",
+      img: Burger,
+    },
+    { name: "Стейк “У Галі”", category: "Meat", price: "10$", img: Burger },
+    { name: "Суп “Плавилка”", category: "Soups", price: "10$", img: Burger },
+    {
+      name: "Торт “Зимова вишня”",
+      category: "Desserts",
+      price: "10$",
+      img: Burger,
+    },
+  ]);
 
   const handleGroupChange = (e) => {
     setselectedGroup(e.target.value);
@@ -24,10 +59,31 @@ function Menu() {
     }
   }, [inputText]);
 
+  useEffect(() => {
+    const savedGroup = localStorage.getItem("selectedGroup") || "All";
+    setselectedGroup(savedGroup);
+  }, []);
+
+  const addToCart = (item) => {
+    setCartItems((prevItems) => [...prevItems, item]);
+    setMenuItems((prevItems) =>
+      prevItems.filter((menuItem) => menuItem.name !== item.name)
+    );
+  };
+
+  const filteredItems = menuItems.filter((item) => {
+    const matchesCategory =
+      selectedGroup === "All" || item.category === selectedGroup;
+    const matchesSearch = item.name
+      .toLowerCase()
+      .includes(inputText.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <div>
-        <Navbar />
-        <p className={styles["title"]}>Акція 1 + 1 = 1</p>
+      <Navbar cartItems={cartItems} />
+      <p className={styles["title"]}>Акція 1 + 1 = 1</p>
       <div className={styles["container"]}>
         <div className={styles["search-container"]}>
           <select
@@ -36,20 +92,36 @@ function Menu() {
             onChange={handleGroupChange}
             className={styles["select"]}
           >
-            <option value="" disabled className={styles["select-option"]}>
-              Group
+            <option value="All" className={styles["select-option"]}>
+              All
             </option>
-            <option value="soups" className={styles["select-option"]}>Soups</option>
-            <option value="deserts" className={styles["select-option"]}>Deserts</option>
-            <option value="fast-food" className={styles["select-option"]}>Fast Food</option>
-            <option value="meat" className={styles["select-option"]}>Meat</option>
-            <option value="salads" className={styles["select-option"]}>Salads</option>
-            <option value="pasta" className={styles["select-option"]}>Pasta</option>
+            <option value="Soups" className={styles["select-option"]}>
+              Soups
+            </option>
+            <option value="Desserts" className={styles["select-option"]}>
+              Deserts
+            </option>
+            <option value="Fast Food" className={styles["select-option"]}>
+              Fast Food
+            </option>
+            <option value="Meat" className={styles["select-option"]}>
+              Meat
+            </option>
+            <option value="Salads" className={styles["select-option"]}>
+              Salads
+            </option>
+            <option value="Pasta" className={styles["select-option"]}>
+              Pasta
+            </option>
           </select>
 
           <div className={styles["search-pannel"]}>
             <Button>
-              <img src={SearchIco} alt="search" className={styles["search-ico"]} />
+              <img
+                src={SearchIco}
+                alt="search"
+                className={styles["search-ico"]}
+              />
             </Button>
             <input
               type="text"
@@ -71,48 +143,20 @@ function Menu() {
         </div>
 
         <div className={styles["menu-container"]}>
-          <MenuItem
-            name="Бургер “Біфштекс на грилі”"
-            category="Fast Food"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Піца “Мама-Сіта“"
-            category="Fast Food"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Паста “358 і один сир”"
-            category="Pasta"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Піца “Пармезано, Федольфо”"
-            category="Fast Food"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Стейк “У Галі”"
-            category="Meat"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Суп “Плавилка”"
-            category="Soups"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Торт “Зимова вишня”"
-            category="Desserts"
-            price="10$"
-            img={Burger}
-          />
+          {filteredItems.length === 0 ? (
+            <p>Нічого не знайдено</p>
+          ) : (
+            filteredItems.map((item) => (
+              <MenuItem
+                key={item.name}
+                name={item.name}
+                category={item.category}
+                price={item.price}
+                img={item.img}
+                addToCart={addToCart}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

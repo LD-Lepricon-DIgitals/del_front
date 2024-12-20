@@ -4,15 +4,21 @@ import PositionModel from "./PositionModel/PositionModel";
 
 const positionNames = ['Картопля фрі','Бургер' ,'Сало' ,'Салат' ,'Ковбаса', 'Живчик', 'Суп'];
 
-function CartModalContent(){
+function CartModalContent({ cartItems = []}){
     return(
         <div className={styles.content}>
             <h1 className={styles.header}>Ваше замовлення</h1>
-                { positionNames.length === 0 ? <h2 className={styles['empty-cart-text']}>На жаль, замовлення порожнє.</h2> : positionNames.map(element => (
-                    <PositionModel positionName={element}/>
+                { cartItems.length === 0 ? <h2 className={styles['empty-cart-text']}>На жаль, замовлення порожнє.</h2> : (
+                    cartItems.map((item, index) => (
+                    <PositionModel
+                        key={index}
+                        positionName={item.name}
+                        price={item.price}
+                    />
+                    )
                 ))}
             
-            { positionNames.length > 0 && <button className={styles['order-button']}>Замовити</button>}
+            { cartItems.length > 0 && <button className={styles['order-button']}>Замовити</button>}
         </div>
     );
 }
