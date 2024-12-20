@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../shared/navigation/navigation.jsx";
 import styles from "./Menu.module.css";
 import SearchIco from "../shared/icons/Search_ico.svg";
 import Button from "../shared/NavigationButton/Button.jsx";
 import Clear from "../shared/icons/Clear_ico.svg";
-import MiniNavi from "../shared/navigation/mini-navi/mini_navi.jsx";
 import MenuItem from "./menu_item.jsx";
 import Burger from "../shared/icons/menu_items/Burger_img.svg";
-import ListItem from "../shared/ListItem/ListItem";
 
 function Menu() {
   const [selectedGroup, setselectedGroup] = useState("");
@@ -29,10 +26,8 @@ function Menu() {
 
   return (
     <div>
-      <div className={styles["navi-container"]}>
+        <Navbar />
         <p className={styles["title"]}>Акція 1 + 1 = 1</p>
-        <MiniNavi />
-      </div>
       <div className={styles["container"]}>
         <div className={styles["search-container"]}>
           <select

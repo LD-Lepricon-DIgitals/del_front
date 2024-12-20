@@ -1,64 +1,120 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap");
 
 .item {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-/*     justify-content: space-between; 
- */    gap: 10px;
-    border: solid 4px #9DDF6B;
-    border-radius: 53px;
-    padding: 5px 10px;
-    margin: 20px 0;
-    font-family: 'Montserrat';
-    font-size: 22px;
-    font-weight: 900;
-
-}
-
-.dish-ico {
-    width: 55px;
-    border-radius: 50px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Montserrat";
+  font-weight: 900;
+  border: solid 3.5px #9ddf6b;
+  padding: 5px 10px;
+  gap: 10px;
+  margin: 10px 0;
+  border-radius: 53px;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-direction: row;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 10px;
 }
 
 .category {
-    color: #FC9024;
-    font-size: 26px;
-    text-align: center;
-    margin: auto;
-
+  color: #fc9024;
+  text-align: center;
+  margin: auto;
 }
 
 .price {
-    background-color: #9EDF6D;
-    font-size: 26px;
-    font-family: 'Montserrat';
-    color: white;
-    font-weight: 900;
-    border-radius: 100px;
-    width: 140px;
-    height: 70%;
-    cursor: pointer;
-    align-self: center;
+  background-color: #9edf6d;
+  font-family: "Montserrat";
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 50px;
 }
 
 .name {
-    text-align: start;
+  text-align: start;
 }
 
 .name-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-left: 10px;
+}
+
+.dish-ico {
+  border-radius: 50px;
+}
+
+@media (min-width: 1024px) {
+  .item {
+    font-size: 22px;
+  }
+  .dish-ico {
+    width: 55px;
+  }
+  .category {
+    font-size: 26px;
+  }
+  .price {
+    font-size: 26px;
+    width: 130px;
+    height: 50px;
+  }
+  .container {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .item {
+    border: solid 3px #9ddf6b;
+    font-size: 12px;
+  }
+  .dish-ico {
+    width: 30px;
+  }
+  .category {
+    font-size: 14px;
+    width: 70px;
+  }
+  .price {
+    font-size: 14px;
+    width: 70px;
+    height: 30px;
+  }
+  .name-container {
+    gap: 5px;
+    margin-left: 5px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .item {
+    font-size: 18px;
+  }
+  .dish-ico {
+    width: 45px;
+  }
+  .category {
+    font-size: 20px;
+  }
+  .price {
+    font-size: 20px;
+    width: 80px;
+    height: 40px;
+  }
+  .container {
+    width: 200px;
+  }
 }
