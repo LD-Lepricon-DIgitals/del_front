@@ -12,7 +12,7 @@ import { React, useState, useRef, useEffect, useContext } from "react";
 import Button from "../NavigationButton/Button.jsx";
 import DropDownMenu from "./DropDownMenu/drop_menu.jsx";
 import RegistrationForm from "./RegisterForm/RegisterFormContent.jsx"
-import Modal from "../Modals/Modal.jsx";
+import Modal from "../Modal/Modal.jsx";
 import CartModalContent from './CartModalContent/CartModalContent.jsx';
 
 // icos
