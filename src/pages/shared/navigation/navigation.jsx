@@ -12,7 +12,7 @@ import { React, useState, useRef, useEffect, useContext } from "react";
 import Button from "../NavigationButton/Button.jsx";
 import DropDownMenu from "./DropDownMenu/drop_menu.jsx";
 import RegistrationForm from "./RegisterForm/RegisterFormContent.jsx"
-import Modal from "../Modals/Modal.jsx";
+import Modal from "../Modal/Modal.jsx";
 import CartModalContent from './CartModalContent/CartModalContent.jsx';
 
 // icos
@@ -120,7 +120,10 @@ function Navigation(){
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
-            <DropDownMenu ref={menuRef} isOpen={isDropOpen && checkWindowWider(550)}></DropDownMenu>
+            <DropDownMenu ref={menuRef} isOpen={isDropOpen && checkWindowWider(550)} 
+                        setIsOpen={setIsDropOpen} handleProfileButtonPressed={handleProfileButtonPressed} 
+                        setIsCartModalOpen={setIsCartModalOpen}></DropDownMenu>
+            
             <Modal ref={registerModalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
             <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent/></Modal>
         </div>

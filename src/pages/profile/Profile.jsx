@@ -1,18 +1,20 @@
 import styles from "./Profile.module.css";
+import "../shared/styles/wrapper.css";
 import Navbar from "../shared/navigation/navigation.jsx";
 import Edit_ico from "../shared/icons/Edit_ico.svg";
+import HomeButton from '../shared/HomeButton/HomeButton'
 import Save_ico from "../shared/icons/Save_ico.svg";
 import Orders_ico from "../shared/icons/Orders_ico.svg";
 import ValidateEditInput from "./ValidateEditInput.js";
-import Modal from "../shared/Modals/Modal.jsx";
-import EditPasswordForm from "../shared/Modals/EditPasswordForm/EditPasswordForm.jsx";
+import Modal from "../shared/Modal/Modal.jsx";
+import EditPasswordForm from "./components/EditPasswordForm/EditPasswordForm.jsx";
 import useClickOutside from "../../hooks/useClickOutside.js";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext.jsx";
 import { React, useState, useRef, useEffect, useContext } from "react";
-import Home_ico from "../shared/icons/Home_ico.svg";
 import { Requests } from "../../api/axios_queries/requests.js";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import axiosClient from "../../api/axios_queries/axios.js";
 
 function ProfileForm() {
   const { userInfo, setUserInfo } = useContext(AppContext);
@@ -24,7 +26,7 @@ function ProfileForm() {
   const [imageSrc, setImageSrc] = useState("");
   const navigate = useNavigate();
   const modalRef = useRef(null);
-  const requests = new Requests(axios);
+  const requests = new Requests(axiosClient);
 
   const toggleEdit = (e) => {
     setIsVisible(!isVisible);
@@ -60,7 +62,7 @@ function ProfileForm() {
     setUserInfo({ ...updatedUserInfo });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let validate_res = ValidateEditInput(userInfo);
@@ -72,7 +74,7 @@ function ProfileForm() {
     setValidationError(null);
 
     try {
-      const response = requests.updateUserInfo({ ...userInfo });
+      const response = await requests.changeUserProfile({ ...userInfo });
       console.log("Дані успішно оновлено:", response);
       setIsEditable(false);
     } catch (error) {
@@ -80,15 +82,15 @@ function ProfileForm() {
     }
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
         const img = new Image();
         img.src = reader.result;
 
-        img.onload = () => {
+        img.onload = async () => {
           const canvas = document.createElement("canvas");
           const desiredWidth = 200;
           const desiredHeight = 200;
@@ -112,15 +114,23 @@ function ProfileForm() {
             desiredWidth,
             desiredHeight
           );
-
+          
           const croppedImageUrl = canvas.toDataURL("image/jpeg");
-          setAvatar(croppedImageUrl);
+          const base64PhotoString = croppedImageUrl.split(',')[1];
+          
+          console.log("Base64 String without prefix:", base64PhotoString);
+
+          const payload = {
+            photo: base64PhotoString,
+          };
 
           try {
-            const response = requests.changeAvatar(avatar);
+            const response = await requests.updatePhoto(payload); // Ensure this sends the correct avatar data
             console.log("Аватар успішно оновлено:", response);
+            setAvatar(base64PhotoString);
+            setImageSrc(croppedImageUrl);
           } catch (error) {
-            console.error("Помилка оновлення даних:", error);
+            console.error("Помилка оновлення аватара:", error);
           }
         };
       };
@@ -131,6 +141,7 @@ function ProfileForm() {
   function OpenModalOnClick() {
     setIsRegModalOpen(!isRegModalOpen);
   }
+
   useClickOutside([modalRef], isRegModalOpen, () => {
     setIsRegModalOpen(false);
   });
@@ -150,12 +161,13 @@ function ProfileForm() {
   }, [userInfo]);
 
   return (
-    <div className={styles["profile-page"]}>
-      <Navbar></Navbar>
+    <div className="wrapper">
+      <Navbar />
+      <div className={styles["page-content"]}>
+      <div className={styles["profile"]}>
       <p className={styles["data-title"]}>
         {(userInfo.user_name || "") + " " + userInfo.user_surname}
       </p>
-      <div className={styles["profile"]}>
         <div className={styles["content"]}>
           <div className={styles["profile-content"]}>
             <label className={styles["label"]}>Ім'я</label>
@@ -246,9 +258,6 @@ function ProfileForm() {
               <div className={styles["role"]}>Кур'єр</div>
             )}
           </div>
-          <button onClick={() => goHome()} className={styles["home-btn"]}>
-            <img src={Home_ico} className={styles["home-ico"]} />
-          </button>
         </div>
 
         <div className={styles["edit-container"]}>
@@ -280,7 +289,7 @@ function ProfileForm() {
             <button onClick={() => goToOrders()} className={styles["edit-btn"]}>
               <img
                 src={Orders_ico}
-                alt="edit icon"
+                alt="orders icon"
                 className={styles["edit-icon"]}
               />
               До замовлень
@@ -296,7 +305,9 @@ function ProfileForm() {
             <EditPasswordForm onClose={() => setIsRegModalOpen(false)} />
           </Modal>
         )}
+        <Link to="/"><HomeButton/></Link>
       </div>
+    </div>
     </div>
   );
 }
