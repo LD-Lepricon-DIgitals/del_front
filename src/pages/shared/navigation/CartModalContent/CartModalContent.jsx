@@ -12,8 +12,8 @@ function CartModalContent({ cartItems = []}){
                     cartItems.map((item, index) => (
                     <PositionModel
                         key={index}
-                        positionName={item.name}
-                        price={item.price}
+                        positionName={item.dish_name}
+                        price={item.dish_price}
                     />
                     )
                 ))}

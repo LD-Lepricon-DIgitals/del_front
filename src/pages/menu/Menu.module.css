@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap");
 
+html, body {
+  min-width: 320px; 
+}
+
 .title {
   font-family: "Montserrat";
   font-weight: 900;
@@ -20,7 +24,7 @@
 }
 
 .container {
-  width: 80%;
+  width: 85%;
   justify-self: center;
 }
 
@@ -59,13 +63,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3vw;
+  padding: 2vw;
   border-radius: 53px;
+  box-sizing: border-box;
+
+}
+
+.message {
+  font-family: "Manrope", sans-serif;
+  font-size: medium;
 }
 
 @media (max-width: 768px) {
   .title {
-    font-size: 30px;
+    font-size: 32px;
   }
   .search-container {
     height: 40px;
@@ -88,6 +99,10 @@
   }
   .menu-container {
     border-radius: 40px;
+    padding-top: 5px;
+  }
+  .message {
+    font-size: small;
   }
 }
 

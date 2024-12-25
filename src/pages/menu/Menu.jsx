@@ -5,49 +5,33 @@ import SearchIco from "../shared/icons/Search_ico.svg";
 import Button from "../shared/NavigationButton/Button.jsx";
 import Clear from "../shared/icons/Clear_ico.svg";
 import MenuItem from "./menu_item.jsx";
-import Burger from "../shared/icons/menu_items/Burger_img.svg";
 import { Link } from "react-router-dom";
-import HomeButton from "../shared/HomeButton/HomeButton.jsx"
+import HomeButton from "../shared/HomeButton/HomeButton.jsx";
+import axiosClient from "../../api/axios_queries/axios.js";
+import { Requests } from "../../api/axios_queries/requests.js";
 
 function Menu() {
-  const [selectedGroup, setselectedGroup] = useState("");
+  const [selectedGroup, setselectedGroup] = useState("all");
   const [inputText, setInputText] = useState("");
   const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-  const [menuItems, setMenuItems] = useState([
-    {
-      name: "Бургер “Біфштекс на грилі”",
-      category: "Fast Food",
-      price: "10$",
-      img: Burger,
-    },
-    {
-      name: "Піца “Мама-Сіта“",
-      category: "Fast Food",
-      price: "10$",
-      img: Burger,
-    },
-    {
-      name: "Паста “358 і один сир”",
-      category: "Pasta",
-      price: "10$",
-      img: Burger,
-    },
-    {
-      name: "Піца “Пармезано, Федольфо”",
-      category: "Fast Food",
-      price: "10$",
-      img: Burger,
-    },
-    { name: "Стейк “У Галі”", category: "Meat", price: "10$", img: Burger },
-    { name: "Суп “Плавилка”", category: "Soups", price: "10$", img: Burger },
-    {
-      name: "Торт “Зимова вишня”",
-      category: "Desserts",
-      price: "10$",
-      img: Burger,
-    },
-  ]);
+  const [dishes, setDishes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const requests = new Requests(axiosClient);
+
+  useEffect(() => {
+    const getDishes = async () => {
+      try {
+        const response = await requests.getDish();
+        console.log("dishes are executed successfully", response.data);
+        setDishes(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching dish data:", error);
+      }
+    };
+    getDishes();
+  }, []);
 
   const handleGroupChange = (e) => {
     setselectedGroup(e.target.value);
@@ -61,22 +45,17 @@ function Menu() {
     }
   }, [inputText]);
 
-  useEffect(() => {
-    const savedGroup = localStorage.getItem("selectedGroup") || "All";
-    setselectedGroup(savedGroup);
-  }, []);
-
   const addToCart = (item) => {
     setCartItems((prevItems) => [...prevItems, item]);
-    setMenuItems((prevItems) =>
-      prevItems.filter((menuItem) => menuItem.name !== item.name)
+    setDishes((prevItems) =>
+      prevItems.filter((menuItem) => menuItem.dish_name !== item.dish_name)
     );
   };
 
-  const filteredItems = menuItems.filter((item) => {
+  const filteredItems = dishes.filter((item) => {
     const matchesCategory =
-      selectedGroup === "All" || item.category === selectedGroup;
-    const matchesSearch = item.name
+      selectedGroup === "all" || item.dish_category === selectedGroup;
+    const matchesSearch = item.dish_name
       .toLowerCase()
       .includes(inputText.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -94,26 +73,26 @@ function Menu() {
             onChange={handleGroupChange}
             className={styles["select"]}
           >
-            <option value="All" className={styles["select-option"]}>
+            <option value="all" className={styles["select-option"]}>
               All
             </option>
-            <option value="Soups" className={styles["select-option"]}>
-              Soups
+            <option value="soup" className={styles["select-option"]}>
+              Soup
             </option>
-            <option value="Desserts" className={styles["select-option"]}>
-              Deserts
+            <option value="dessert" className={styles["select-option"]}>
+              Dessert
             </option>
-            <option value="Fast Food" className={styles["select-option"]}>
-              Fast Food
-            </option>
-            <option value="Meat" className={styles["select-option"]}>
+            <option value="meat" className={styles["select-option"]}>
               Meat
             </option>
-            <option value="Salads" className={styles["select-option"]}>
-              Salads
+            <option value="salad" className={styles["select-option"]}>
+              Salad
             </option>
-            <option value="Pasta" className={styles["select-option"]}>
+            <option value="pasta" className={styles["select-option"]}>
               Pasta
+            </option>
+            <option value="pizza" className={styles["select-option"]}>
+              Pizza
             </option>
           </select>
 
@@ -145,23 +124,27 @@ function Menu() {
         </div>
 
         <div className={styles["menu-container"]}>
-          {filteredItems.length === 0 ? (
-            <p>Нічого не знайдено</p>
+          {loading ? (
+            <p className={styles["message"]}>Завантаження...</p>
+          ) : filteredItems.length === 0 ? (
+            <p className={styles["message"]}>Нічого не знайдено</p>
           ) : (
             filteredItems.map((item) => (
               <MenuItem
-                key={item.name}
-                name={item.name}
-                category={item.category}
-                price={item.price}
-                img={item.img}
+                key={item.id}
+                dish_name={item.dish_name}
+                dish_category={item.dish_category}
+                dish_price={item.dish_price}
+                dish_photo={item.dish_photo}
                 addToCart={addToCart}
               />
             ))
           )}
         </div>
       </div>
-      <Link to="/"><HomeButton/></Link>
+      <Link to="/">
+        <HomeButton />
+      </Link>
     </div>
   );
 }

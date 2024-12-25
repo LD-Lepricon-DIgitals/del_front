@@ -10,10 +10,11 @@
   font-family: "Montserrat";
   font-weight: 900;
   border: solid 3.5px #9ddf6b;
-  padding: 5px 10px;
+  padding: 10px 30px;
   gap: 10px;
   margin: 10px 0;
   border-radius: 53px;
+  
 }
 
 .container {
@@ -21,6 +22,7 @@
   flex-direction: row;
   text-align: center;
   gap: 10px;
+  align-items: center;
 }
 
 .category {
@@ -48,7 +50,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   margin-left: 10px;
 }
 
@@ -73,35 +75,48 @@
   }
   .container {
     width: 300px;
+    gap: 5px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .item {
     border: solid 3px #9ddf6b;
-    font-size: 12px;
+    font-size: 12px;    
+    flex-direction: column;
+    gap: 0;
+    max-width: 80%;
   }
   .dish-ico {
     width: 30px;
   }
   .category {
-    font-size: 14px;
-    width: 70px;
+    font-size: 16px;
+    margin: 0%;
   }
   .price {
     font-size: 14px;
-    width: 70px;
     height: 30px;
+    width: 70px;
   }
   .name-container {
     gap: 5px;
     margin-left: 5px;
+    justify-content: flex-start;
+  }
+  .name {
+    font-size: 16px;
+  }
+  .container {
+    justify-content: flex-end;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 600px) and (max-width: 1024px) {
   .item {
     font-size: 18px;
+    border: solid 2.5px #9ddf6b;
+    max-width: 80%;
   }
   .dish-ico {
     width: 45px;
