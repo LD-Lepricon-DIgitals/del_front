@@ -44,4 +44,7 @@ export class Requests {
     changeUserProfile(data){
       return this.sendRequest('patch', '/api/user/change', data);
     }
+    getDish(){
+      return this.sendRequest('get', '/api/dishes');
+    }
 } 

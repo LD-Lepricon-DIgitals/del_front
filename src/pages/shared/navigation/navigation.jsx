@@ -31,7 +31,7 @@ import { AppContext } from "../../../context/AppContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 
-function Navigation(){
+function Navigation({ cartItems = [] }){
     const [isDropOpen, setIsDropOpen] = useState(false);
     const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
     const [inputText, setInputText] = useState("");
@@ -125,7 +125,7 @@ function Navigation(){
                         setIsCartModalOpen={setIsCartModalOpen}></DropDownMenu>
             
             <Modal ref={registerModalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
-            <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent/></Modal>
+            <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent cartItems={cartItems}s/></Modal>
         </div>
     );
 }

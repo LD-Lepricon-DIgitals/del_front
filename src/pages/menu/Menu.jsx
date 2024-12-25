@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../shared/navigation/navigation.jsx";
 import styles from "./Menu.module.css";
 import SearchIco from "../shared/icons/Search_ico.svg";
 import Button from "../shared/NavigationButton/Button.jsx";
 import Clear from "../shared/icons/Clear_ico.svg";
-import MiniNavi from "../shared/navigation/mini-navi/mini_navi.jsx";
 import MenuItem from "./menu_item.jsx";
-import Burger from "../shared/icons/menu_items/Burger_img.svg";
-import ListItem from "../shared/ListItem/ListItem";
+import { Link } from "react-router-dom";
+import HomeButton from "../shared/HomeButton/HomeButton.jsx";
+import axiosClient from "../../api/axios_queries/axios.js";
+import { Requests } from "../../api/axios_queries/requests.js";
 
 function Menu() {
-  const [selectedGroup, setselectedGroup] = useState("");
+  const [selectedGroup, setselectedGroup] = useState("all");
   const [inputText, setInputText] = useState("");
   const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [dishes, setDishes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const requests = new Requests(axiosClient);
+
+  useEffect(() => {
+    const getDishes = async () => {
+      try {
+        const response = await requests.getDish();
+        console.log("dishes are executed successfully", response.data);
+        setDishes(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching dish data:", error);
+      }
+    };
+    getDishes();
+  }, []);
 
   const handleGroupChange = (e) => {
     setselectedGroup(e.target.value);
@@ -27,12 +45,26 @@ function Menu() {
     }
   }, [inputText]);
 
+  const addToCart = (item) => {
+    setCartItems((prevItems) => [...prevItems, item]);
+    setDishes((prevItems) =>
+      prevItems.filter((menuItem) => menuItem.dish_name !== item.dish_name)
+    );
+  };
+
+  const filteredItems = dishes.filter((item) => {
+    const matchesCategory =
+      selectedGroup === "all" || item.dish_category === selectedGroup;
+    const matchesSearch = item.dish_name
+      .toLowerCase()
+      .includes(inputText.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <div>
-      <div className={styles["navi-container"]}>
-        <p className={styles["title"]}>Акція 1 + 1 = 1</p>
-        <MiniNavi />
-      </div>
+      <Navbar cartItems={cartItems} />
+      <p className={styles["title"]}>Акція 1 + 1 = 1</p>
       <div className={styles["container"]}>
         <div className={styles["search-container"]}>
           <select
@@ -41,20 +73,36 @@ function Menu() {
             onChange={handleGroupChange}
             className={styles["select"]}
           >
-            <option value="" disabled className={styles["select-option"]}>
-              Group
+            <option value="all" className={styles["select-option"]}>
+              All
             </option>
-            <option value="soups" className={styles["select-option"]}>Soups</option>
-            <option value="deserts" className={styles["select-option"]}>Deserts</option>
-            <option value="fast-food" className={styles["select-option"]}>Fast Food</option>
-            <option value="meat" className={styles["select-option"]}>Meat</option>
-            <option value="salads" className={styles["select-option"]}>Salads</option>
-            <option value="pasta" className={styles["select-option"]}>Pasta</option>
+            <option value="soup" className={styles["select-option"]}>
+              Soup
+            </option>
+            <option value="dessert" className={styles["select-option"]}>
+              Dessert
+            </option>
+            <option value="meat" className={styles["select-option"]}>
+              Meat
+            </option>
+            <option value="salad" className={styles["select-option"]}>
+              Salad
+            </option>
+            <option value="pasta" className={styles["select-option"]}>
+              Pasta
+            </option>
+            <option value="pizza" className={styles["select-option"]}>
+              Pizza
+            </option>
           </select>
 
           <div className={styles["search-pannel"]}>
             <Button>
-              <img src={SearchIco} alt="search" className={styles["search-ico"]} />
+              <img
+                src={SearchIco}
+                alt="search"
+                className={styles["search-ico"]}
+              />
             </Button>
             <input
               type="text"
@@ -76,50 +124,27 @@ function Menu() {
         </div>
 
         <div className={styles["menu-container"]}>
-          <MenuItem
-            name="Бургер “Біфштекс на грилі”"
-            category="Fast Food"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Піца “Мама-Сіта“"
-            category="Fast Food"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Паста “358 і один сир”"
-            category="Pasta"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Піца “Пармезано, Федольфо”"
-            category="Fast Food"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Стейк “У Галі”"
-            category="Meat"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Суп “Плавилка”"
-            category="Soups"
-            price="10$"
-            img={Burger}
-          />
-          <MenuItem
-            name="Торт “Зимова вишня”"
-            category="Desserts"
-            price="10$"
-            img={Burger}
-          />
+          {loading ? (
+            <p className={styles["message"]}>Завантаження...</p>
+          ) : filteredItems.length === 0 ? (
+            <p className={styles["message"]}>Нічого не знайдено</p>
+          ) : (
+            filteredItems.map((item) => (
+              <MenuItem
+                key={item.id}
+                dish_name={item.dish_name}
+                dish_category={item.dish_category}
+                dish_price={item.dish_price}
+                dish_photo={item.dish_photo}
+                addToCart={addToCart}
+              />
+            ))
+          )}
         </div>
       </div>
+      <Link to="/">
+        <HomeButton />
+      </Link>
     </div>
   );
 }
