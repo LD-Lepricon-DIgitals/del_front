@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../menu/menu_item.module.css";
+import styles from "./list_item.module.css";
 
 function ListItem({children}) {
     return(
