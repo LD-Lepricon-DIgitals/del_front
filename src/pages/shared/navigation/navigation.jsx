@@ -108,7 +108,7 @@ function Navigation({ cartItems = [] }){
                         <Link                 
                             to={{pathname: "/menu",}}
                             state={{searchText: `${inputText}`, }}>
-                        <Button><img className="ico" src={SearchIco} alt="Search"/></Button></Link>
+                        <div className="sButtin"><img className="searchIco" src={SearchIco} alt="Search"/></div></Link>
                         
                         
                         <input type="text" className="search-input navi-font" value={inputText} placeholder={"Пошук..."} onChange={e => setInputText(e.target.value)} id='navbar-input'/>
