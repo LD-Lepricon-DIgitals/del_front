@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./menu_item.module.css";
 import ListItem from "../shared/ListItem/ListItem";
 
-function MenuItem({ dish_name, dish_category, dish_price, dish_photo, addToCart, }) {
+function MenuItem({ dish_id,dish_name, dish_category, dish_price, dish_photo, addToCart,dish_count}) {
 
   const handleAddToCart = () => {
-    const item = { dish_name, dish_category, dish_price, dish_photo };
+    const item = { dish_name, dish_id, dish_count: 1, dish_price };
     addToCart(item);
     console.log(item);
   };

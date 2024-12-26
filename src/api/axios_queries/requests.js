@@ -59,4 +59,8 @@ export class Requests {
     finishOrder(orderId){
         return this.sendRequest('post', `/api/orders/finish/${orderId}`)
     }
+    createOrder(data){
+      return this.sendRequest('post', '/api/orders/create',data)
+    }
+
 } 

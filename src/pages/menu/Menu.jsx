@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext} from "react";
+import { CartContext } from "../../context/CartContext";
 import Navbar from "../shared/navigation/navigation.jsx";
 import styles from "./Menu.module.css";
 import SearchIco from "../shared/icons/Search_ico.svg";
@@ -18,10 +19,11 @@ function Menu() {
   const [selectedGroup, setselectedGroup] = useState(group ?? "all");
   const [inputText, setInputText] = useState(searchText ?? "");
   const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
   const requests = new Requests(axiosClient);
+  const { cartItems, addToCart } = useContext(CartContext);
+
 
   useEffect(() => {
     const getDishes = async () => {
@@ -48,14 +50,6 @@ function Menu() {
       setIsClearButtonOpen(false);
     }
   }, [inputText]);
-
-  const addToCart = (item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
-    setDishes((prevItems) =>
-      prevItems.filter((menuItem) => menuItem.dish_name !== item.dish_name)
-    );
-  };
-
   const filteredItems = dishes.filter((item) => {
     const matchesCategory =
       selectedGroup === "all" || item.dish_category === selectedGroup;
@@ -135,7 +129,7 @@ function Menu() {
           ) : (
             filteredItems.map((item) => (
               <MenuItem
-                key={item.id}
+                dish_id={item.id}
                 dish_name={item.dish_name}
                 dish_category={item.dish_category}
                 dish_price={item.dish_price}
