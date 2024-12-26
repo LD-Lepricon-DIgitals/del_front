@@ -47,4 +47,16 @@ export class Requests {
     getDish(){
       return this.sendRequest('get', '/api/dishes');
     }
+    getOrders(){
+        return this.sendRequest('get', '/api/orders')
+    }
+    getOrderDetailsById(orderId){
+        return this.sendRequest('get', `/api/orders/${orderId}`)
+    }
+    confirmOrder(orderId){
+        return this.sendRequest('post', `/api/orders/confirm/${orderId}`)
+    }
+    finishOrder(orderId){
+        return this.sendRequest('post', `/api/orders/finish/${orderId}`)
+    }
 } 

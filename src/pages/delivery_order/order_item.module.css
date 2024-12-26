@@ -89,3 +89,32 @@ input:checked + .slider
 {
     box-shadow: 0 0 0 2px limeGreen;
 }
+
+.redirect-button{
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width: 768px) {
+    .item {
+        border: #9ddf6b 3px solid;
+        margin: 15px 0;
+        gap:8px;
+    }
+    .redirect-button {
+        width: 30px;
+        height: 30px;
+    }
+    .switch{
+        width: 45px;
+        height: 22px;
+    }
+    .slider:before{
+        transform: translateX(-23px);
+    }
+    input:checked + .slider:before
+    {
+        transform: translateX(23px);
+        background-color: limeGreen;
+    }
+}
