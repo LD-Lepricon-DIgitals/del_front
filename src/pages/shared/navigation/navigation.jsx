@@ -70,11 +70,6 @@ function Navigation({ cartItems = [] }){
             getUserInfo();
     }, [setIsUserAuthorized, setUserInfo ]);
 
-    // code to show user data
-    // useEffect(() => {
-    //     console.log(`USER DATA IS ${JSON.stringify(userInfo)}`);
-    // }, [userInfo]); // Этот useEffect сработает, когда userInfo изменится
-
     useEffect(() => {
        if (inputText.length !== 0){
             setIsClearButtonOpen(true);
@@ -109,7 +104,13 @@ function Navigation({ cartItems = [] }){
         <div className="navi">
                         <div className="navigation-content">
                     <div className="search-pannel">
-                        <Button><img className="ico" src={SearchIco} alt="Search" /></Button>
+
+                        <Link                 
+                            to={{pathname: "/menu",}}
+                            state={{searchText: `${inputText}`, }}>
+                        <Button><img className="ico" src={SearchIco} alt="Search"/></Button></Link>
+                        
+                        
                         <input type="text" className="search-input navi-font" value={inputText} placeholder={"Пошук..."} onChange={e => setInputText(e.target.value)} id='navbar-input'/>
                         <Button className={isClearButtonOpen ? 'visible' : 'hidden'} onClick={() => {setInputText('')}}><img className="clear" src={Clear} alt="clear" /></Button>
                     </div>

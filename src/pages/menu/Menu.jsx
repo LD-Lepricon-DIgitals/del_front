@@ -9,10 +9,14 @@ import { Link } from "react-router-dom";
 import HomeButton from "../shared/HomeButton/HomeButton.jsx";
 import axiosClient from "../../api/axios_queries/axios.js";
 import { Requests } from "../../api/axios_queries/requests.js";
+import { useLocation } from "react-router-dom";
 
 function Menu() {
-  const [selectedGroup, setselectedGroup] = useState("all");
-  const [inputText, setInputText] = useState("");
+
+  const location = useLocation();
+  const { group = "all", searchText = "" } = location.state || {};
+  const [selectedGroup, setselectedGroup] = useState(group ?? "all");
+  const [inputText, setInputText] = useState(searchText ?? "");
   const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [dishes, setDishes] = useState([]);
