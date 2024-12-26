@@ -104,7 +104,18 @@
     cursor: pointer;
     transition: all 0.3s ease; 
 }
-
+.sButtin {
+    padding: 11px;
+}
+.btn-animation{
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+}
+.btn-animation:hover {
+    background-color: #e0e0e0; 
+    transform: scale(1.05); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+} 
 .searchIco:hover {
     transform: scale(1.1); 
     filter: brightness(1.2)

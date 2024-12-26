@@ -108,7 +108,7 @@ function Navigation({ cartItems = [] }){
                         <Link                 
                             to={{pathname: "/menu",}}
                             state={{searchText: `${inputText}`, }}>
-                        <Button><img className="ico" src={SearchIco} alt="Search"/></Button></Link>
+                        <div className="sButtin"><img className="searchIco" src={SearchIco} alt="Search"/></div></Link>
                         
                         
                         <input type="text" className="search-input navi-font" value={inputText} placeholder={"Пошук..."} onChange={e => setInputText(e.target.value)} id='navbar-input'/>
@@ -116,8 +116,8 @@ function Navigation({ cartItems = [] }){
                     </div>
                     <div className="menu-buttons">
                     <Link to={"/menu"} className="link"><Button className="menu-button "><p className="navi-font">Меню</p></Button></Link>
-                    <Button onClick={() => {setIsCartModalOpen(!isCartModalOpen)}}><img className="ico" src={CartIco} alt="Cart" /></Button>
-                    <Button onClick={handleProfileButtonPressed}><img className="ico" src={UserIco} alt="profile" /></Button>
+                    <Button className='btn-animation' onClick={() => {setIsCartModalOpen(!isCartModalOpen)}}><img className="ico" src={CartIco} alt="Cart" /></Button>
+                    <Button className='btn-animation' onClick={handleProfileButtonPressed}><img className="ico" src={UserIco} alt="profile" /></Button>
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
