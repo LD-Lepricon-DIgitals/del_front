@@ -13,6 +13,13 @@
     color: #FFFFFF;
     border-radius: 8px;
     margin: 5px;
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+}
+.order-button:hover {
+    background-color: #e14d4d; 
+    transform: scale(1.05); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 .header {
     font-family: var(--font-family);
