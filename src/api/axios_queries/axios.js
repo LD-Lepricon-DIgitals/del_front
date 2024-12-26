@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: "https://gamch1k.v6.navy/delivery",
-  timeout: 10000,
+  baseURL: "https://delivery.livsey.xyz",
+  timeout: 100000,
   withCredentials: true, 
   headers: {
     'Content-Type': 'application/json',

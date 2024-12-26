@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap");
+
+.item {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: "Montserrat";
+    font-weight: 900;
+    border: solid 3.5px #9ddf6b;
+    padding: 10px 30px;
+    gap: 10px;
+    margin: 10px 0;
+    border-radius: 53px;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.category {
+    color: #fc9024;
+    text-align: center;
+    margin: auto;
+}
+
+.price {
+    background-color: #9edf6d;
+    font-family: "Montserrat";
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+    align-self: center;
+    border-radius: 50px;
+}
+
+.name {
+    text-align: start;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.dish-ico {
+    border-radius: 50px;
+}
+
+@media (min-width: 1024px) {
+    .item {
+        font-size: 22px;
+    }
+    .dish-ico {
+        width: 55px;
+    }
+    .category {
+        font-size: 26px;
+    }
+    .price {
+        font-size: 26px;
+        width: 130px;
+        height: 50px;
+    }
+    .container {
+        width: 300px;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .item {
+        border: solid 3px #9ddf6b;
+        font-size: 12px;
+        flex-direction: column;
+        gap: 0;
+        max-width: 80%;
+    }
+    .dish-ico {
+        width: 30px;
+    }
+    .category {
+        font-size: 16px;
+        margin: 0%;
+    }
+    .price {
+        font-size: 14px;
+        height: 30px;
+        width: 70px;
+    }
+    .name-container {
+        gap: 5px;
+        margin-left: 5px;
+        justify-content: flex-start;
+    }
+    .name {
+        font-size: 16px;
+    }
+    .container {
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .item {
+        font-size: 18px;
+        border: solid 2.5px #9ddf6b;
+        max-width: 80%;
+    }
+    .dish-ico {
+        width: 45px;
+    }
+    .category {
+        font-size: 20px;
+    }
+    .price {
+        font-size: 20px;
+        width: 80px;
+        height: 40px;
+    }
+    .container {
+        width: 200px;
+    }
+}

@@ -31,7 +31,7 @@ import { AppContext } from "../../../context/AppContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 
-function Navigation(){
+function Navigation({ cartItems = [] }){
     const [isDropOpen, setIsDropOpen] = useState(false);
     const [isClearButtonOpen, setIsClearButtonOpen] = useState(false);
     const [inputText, setInputText] = useState("");
@@ -70,11 +70,6 @@ function Navigation(){
             getUserInfo();
     }, [setIsUserAuthorized, setUserInfo ]);
 
-    // code to show user data
-    // useEffect(() => {
-    //     console.log(`USER DATA IS ${JSON.stringify(userInfo)}`);
-    // }, [userInfo]); // Этот useEffect сработает, когда userInfo изменится
-
     useEffect(() => {
        if (inputText.length !== 0){
             setIsClearButtonOpen(true);
@@ -109,7 +104,13 @@ function Navigation(){
         <div className="navi">
                         <div className="navigation-content">
                     <div className="search-pannel">
-                        <Button><img className="ico" src={SearchIco} alt="Search" /></Button>
+
+                        <Link                 
+                            to={{pathname: "/menu",}}
+                            state={{searchText: `${inputText}`, }}>
+                        <Button><img className="ico" src={SearchIco} alt="Search"/></Button></Link>
+                        
+                        
                         <input type="text" className="search-input navi-font" value={inputText} placeholder={"Пошук..."} onChange={e => setInputText(e.target.value)} id='navbar-input'/>
                         <Button className={isClearButtonOpen ? 'visible' : 'hidden'} onClick={() => {setInputText('')}}><img className="clear" src={Clear} alt="clear" /></Button>
                     </div>
@@ -125,7 +126,7 @@ function Navigation(){
                         setIsCartModalOpen={setIsCartModalOpen}></DropDownMenu>
             
             <Modal ref={registerModalRef} isOpen={isRegModalOpen}><RegistrationForm /></Modal>
-            <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent/></Modal>
+            <Modal ref={cartModalRef} isOpen={isCartModalOpen}><CartModalContent cartItems={cartItems}s/></Modal>
         </div>
     );
 }

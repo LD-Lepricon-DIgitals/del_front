@@ -44,4 +44,19 @@ export class Requests {
     changeUserProfile(data){
       return this.sendRequest('patch', '/api/user/change', data);
     }
+    getDish(){
+      return this.sendRequest('get', '/api/dishes');
+    }
+    getOrders(){
+        return this.sendRequest('get', '/api/orders')
+    }
+    getOrderDetailsById(orderId){
+        return this.sendRequest('get', `/api/orders/${orderId}`)
+    }
+    confirmOrder(orderId){
+        return this.sendRequest('post', `/api/orders/confirm/${orderId}`)
+    }
+    finishOrder(orderId){
+        return this.sendRequest('post', `/api/orders/finish/${orderId}`)
+    }
 } 
