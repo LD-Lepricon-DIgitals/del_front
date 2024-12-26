@@ -24,8 +24,14 @@
     width: 100%;
     height: calc(10px + var(--input-height));
     margin-top: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-
+.submit:hover {
+    background-color: #e14d4d; 
+    transform: scale(1.05); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
 .content {
     background-color: var(--secondary-color);
     border-radius: 10px;
@@ -48,14 +54,21 @@
     margin-top: 5px;
 }
 .log-button {
-    font-family: var(--font-family);
+    margin-left: 10px;
+    font-family: var(--font-family); 
     font-weight: bold;
     font-size: 18px;
-    color: #fff;
-    background-color: transparent;
-    border: #414040 solid 2px;
+    color: #fff; 
+    background-color: transparent; 
+    border: 2px solid #414040;
     border-radius: 10px;
-    padding: 5px;
+    padding: 4px 8px; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+}
+.log-button:hover {
+    border-color: #ff5b5b; 
+    transform: scale(1.05); 
 }
 
 .text-inputs {
