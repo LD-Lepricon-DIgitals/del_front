@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+    --font-family: "Montserrat Alternates", sans-serif;
+}
+
+body {
+    position: relative;
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.data-title {
+    margin: 15px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.data-status {
+    margin: 15px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: #558F28;
+    background-color: #9EDF6D;
+    padding: 15px;
+    border-radius: 100px;
+}
+
+.title-status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-content:after {
+    content: ""; /* Обов'язковий для :after */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%; /* Заповнює весь блок */
+    background: url("../shared/img/Background.svg") no-repeat bottom center;
+    background-size: cover; /* Масштабування фону */
+    z-index: -1; /* Фон під основним контентом */
+    opacity: 0.9; /* Невелика прозорість фону, якщо потрібно */
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+}
+
+.menu-container {
+    background-color: #FFFFFF;
+    border: solid 1px #9DDF6B;
+    border-radius: 53px;
+    padding: 2vw;
+    gap: 6vw;
+}
+
+.order {
+    margin-top: 50px;
+    border-radius: 35px;
+    padding: 30px;
+    background-color: #ffffff;
+    opacity: 0.99;
+    border: 1px solid #9ddf6b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    gap: 10px;
+}
+
+.avatar {
+    margin-left: 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 60px;
+    width: 250px;
+    height: 250px;
+}
+
+.avatar img {
+    width: 250px;
+    height: 250px;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    width: 55%;
+}
+
+.user-info-field {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 20px;
+    border: 2px solid #9ddf6b;
+    border-radius: 8px;
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.first-section {
+    display: flex;
+    flex-direction: row;
+    gap: 20px
+}
+
+.client-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-description {
+    margin: 15px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 20px;
+    color: #7E7E7E;
+    font-weight: 900;
+    text-align: center;
+}

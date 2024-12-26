@@ -51,7 +51,7 @@ export class Requests {
         return this.sendRequest('get', '/api/orders')
     }
     getOrderDetailsById(orderId){
-        return this.sendRequest('get', `/api/orders/${orderId}`)
+        return this.sendRequest('get', `/api/orders/order/${orderId}`)
     }
     confirmOrder(orderId){
         return this.sendRequest('post', `/api/orders/confirm/${orderId}`)
