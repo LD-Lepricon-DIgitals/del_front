@@ -4,24 +4,64 @@ h3 {
     font-size: medium;
     margin: 0;
 }
-ul {
-    margin: 5px;
-    padding-left: 15px;
-    font-family: var(--main-font-family);
-    color: #5A5959;
-    font-weight: 500;
-}
-.content {
-    margin: 20px 4vw;
-}
-.footer{
-    margin-top: 5vh;
-    padding: 20px 0;
+
+.footer, .content{
     width: 100%;
-    height: 10%;
+    min-height: 250px;
     background-color: var(--secondary-color);
     font-family: var(--main-font-family);
     position: relative; /* Обычное позиционирование */
     display: flex;
     justify-content: space-between;
+}
+.content {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.list, .devs {
+    list-style: none;
+    margin: 5px;
+    font-family: var(--main-font-family);
+    color: #5A5960;
+    font-weight: 500;
+    
+}
+
+.devs{
+    padding-left: 10px;
+}
+.ico {
+    width: 25px;
+    height: 25px;
+}
+.Tree {
+    margin: 0;
+    padding: 0;
+    width: 150px;   
+}
+li {
+    margin: 6px;
+}
+
+a:active,
+a {
+    text-decoration: none;
+    color: #5A5959;
+}
+@media screen and (max-width: 630px) {
+    .Tree {
+        opacity: 0.25;
+            
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+    } 
+}
+@media screen and (max-width: 380px) {
+    .content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }
