@@ -116,8 +116,8 @@ function Navigation({ cartItems = [] }){
                     </div>
                     <div className="menu-buttons">
                     <Link to={"/menu"} className="link"><Button className="menu-button "><p className="navi-font">Меню</p></Button></Link>
-                    <Button onClick={() => {setIsCartModalOpen(!isCartModalOpen)}}><img className="ico" src={CartIco} alt="Cart" /></Button>
-                    <Button onClick={handleProfileButtonPressed}><img className="ico" src={UserIco} alt="profile" /></Button>
+                    <Button className='btn-animation' onClick={() => {setIsCartModalOpen(!isCartModalOpen)}}><img className="ico" src={CartIco} alt="Cart" /></Button>
+                    <Button className='btn-animation' onClick={handleProfileButtonPressed}><img className="ico" src={UserIco} alt="profile" /></Button>
                     </div>
                     <Button ref={menuButtonRef} onClick={toggleMenu} className="list-for-mobile-button"><img className="ico" src={ListIco} alt="List"></img></Button>
             </div>
