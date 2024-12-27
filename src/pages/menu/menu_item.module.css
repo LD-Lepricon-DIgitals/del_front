@@ -39,6 +39,12 @@
     cursor: pointer;
     align-self: center;
     border-radius: 50px;
+    transition: all 0.3s ease; 
+}
+
+.price:hover {
+    background-color: #89ce55;
+    transform: scale(1.05); 
 }
 
 .name {
@@ -48,7 +54,7 @@
 .name-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
     margin-left: 10px;
@@ -133,3 +139,8 @@
         width: 200px;
     }
 }
+@media (max-width: 400px) {
+    .name {
+        font-size: smaller;
+    }
+  }

@@ -7,7 +7,7 @@ import axios from "../../api/axios_queries/axios";
 
 function OrderItem(props) {
     const requests = new Requests(axios);
-    const [isChecked, setIsChecked] = useState(props.status === "pending");
+    const [isChecked, setIsChecked] = useState(props.status !== "pending");
 
     const handleCheckboxChange = (event) => {
         const newChecked = event.target.checked;

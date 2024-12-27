@@ -1,15 +1,15 @@
-import React, { Suspense, lazy } from "react";
+import React, {lazy, Suspense} from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppProvider } from "./context/AppContext.jsx";
 import { CartProvider } from "./context/CartContext";
-import Orders from "./pages/delivery_order/Orders";
+import Orders from "./pages/order/Order.jsx";
 const Main = lazy(() => import("./pages/main/Main.jsx"));
 const Profile = lazy(() => import("./pages/profile/Profile.jsx"));
 const Menu = lazy(() => import("./pages/menu/Menu.jsx"));
 
 const CartModalContent = lazy(() =>
-  import("./pages/shared/navigation/CartModalContent/CartModalContent.jsx")
+    import("./pages/shared/navigation/CartModalContent/CartModalContent.jsx")
 );
 
 function App() {
