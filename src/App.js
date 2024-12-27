@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppProvider } from "./context/AppContext.jsx";
 import { CartProvider } from "./context/CartContext";
 import Orders from "./pages/delivery_orders/Orders.jsx";
+import Order from "./pages/order/Order.jsx"
 const Main = lazy(() => import("./pages/main/Main.jsx"));
 const Profile = lazy(() => import("./pages/profile/Profile.jsx"));
 const Menu = lazy(() => import("./pages/menu/Menu.jsx"));
@@ -25,6 +26,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
              <Route path="/orders" element={<Orders />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/orders/:id" element={<Order/>}/>
           </Routes>
         </Suspense>
       </Router>

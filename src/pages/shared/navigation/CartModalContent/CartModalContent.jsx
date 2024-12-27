@@ -46,8 +46,8 @@ function CartModalContent() {
           }
       
           console.log("Замовлення успішно створено:", response.data);
-         clearCart();
-          //alert("Замовлення успішно створено!");
+          clearCart();
+          alert("Замовлення успішно створено!");
         } catch (error) {
           if (error.response) {
             console.error(`
