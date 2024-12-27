@@ -69,6 +69,28 @@
     gap: 6vw;
 }
 
+.page-content:after {
+    content: ""; /* Обов'язковий для :after */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%; /* Заповнює весь блок */
+    background: url("../shared/img/Background.svg") no-repeat bottom center;
+    background-size: cover; /* Масштабування фону */
+    z-index: -1; /* Фон під основним контентом */
+    opacity: 0.9; /* Невелика прозорість фону, якщо потрібно */
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+}
+
+.message {
+    font-family: "Manrope", sans-serif;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 30vh;
+}
+
 @media (max-width: 480px){
     .title {
         font-size: 25px;

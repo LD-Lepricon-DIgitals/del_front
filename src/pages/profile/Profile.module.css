@@ -11,7 +11,6 @@ body {
 
 .page-content:after {
   content: ""; /* Обов'язковий для :after */
-  position: absolute; /* Абсолютне позиціонування */
   bottom: 0;
   left: 0;
   width: 100%;
@@ -20,6 +19,9 @@ body {
   background-size: cover; /* Масштабування фону */
   z-index: -1; /* Фон під основним контентом */
   opacity: 0.9; /* Невелика прозорість фону, якщо потрібно */
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
 }
 
 html,
