@@ -22,13 +22,24 @@ body {
     font-weight: 900;
 }
 
-.data-status {
+.data-status_pending {
     margin: 15px;
     font-family: "Montserrat Alternates", sans-serif;
     font-size: 30px;
     font-weight: 900;
     color: #558F28;
     background-color: #9EDF6D;
+    padding: 15px;
+    border-radius: 100px;
+}
+
+.data-status_in_process {
+    margin: 15px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: #8D9B82;
+    background-color: #D9EDC9;
     padding: 15px;
     border-radius: 100px;
 }
@@ -62,14 +73,6 @@ body {
     background-attachment: scroll;
     background-position: 0% 0%;
     position: fixed;
-}
-
-.menu-container {
-    background-color: #FFFFFF;
-    border: solid 1px #9DDF6B;
-    border-radius: 53px;
-    padding: 2vw;
-    gap: 6vw;
 }
 
 .order {
@@ -116,7 +119,7 @@ body {
     border: 2px solid #9ddf6b;
     border-radius: 8px;
     margin-top: 10px;
-    flex-grow: 1;
+    width: 100%;
 }
 
 .first-section {
@@ -129,6 +132,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 63%;
 }
 
 .info {
@@ -144,4 +148,262 @@ body {
     color: #7E7E7E;
     font-weight: 900;
     text-align: center;
+}
+
+.order-title {
+    margin: 10px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.order-info {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 2px #9ddf6b solid;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.totalprice-title {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.totalprice-amount {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    color: #9ddf6b;
+}
+
+.button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.finish-button {
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 40%;
+    background-color: #9EDF6D;
+    border-radius: 8px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 20px;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.finish-button:hover {
+    background-color: #89ce55;
+    transform: scale(1.01);
+    transition-duration: 0.3s;
+}
+
+.message {
+    font-family: "Manrope", sans-serif;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 30vh;
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 10px;
+    }
+    .data-title{
+        font-size: 15px;
+    }
+    .data-status_in_process{
+        font-size: 15px;
+    }
+    .data-status_pending{
+        font-size: 15px;
+    }
+    .order {
+        width: 95%;
+        padding: 15px;
+        gap: 10px;
+    }
+    .info {
+        flex-direction: column;
+    }
+    .client-fields{
+        width: 35%;
+    }
+    .client-info {
+        width: 100%;
+    }
+    .order-info {
+        width: 100%;
+        border-left: none;
+    }
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
+    .avatar img {
+        width: 150px;
+        height: 150px;
+    }
+    .user-info-field {
+        font-size: 16px;
+        padding: 10px;
+    }
+    .order-title {
+        font-size: 20px;
+    }
+    .totalprice-title, .totalprice-amount {
+        font-size: 18px;
+    }
+    .finish-button {
+        width: 80%;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .wrapper {
+        padding: 15px;
+    }
+    .order {
+        width: 90%;
+        padding: 20px;
+        gap: 15px;
+    }
+    .info {
+        flex-direction: column;
+    }
+    .client-fields{
+        width: 35%;
+    }
+    .client-info {
+        width: 100%;
+    }
+    .order-info {
+        width: 100%;
+        border-left: none;
+    }
+    .avatar {
+        width: 200px;
+        height: 200px;
+    }
+    .avatar img {
+        width: 200px;
+        height: 200px;
+    }
+    .user-info-field {
+        font-size: 18px;
+        padding: 15px;
+    }
+    .order-title {
+        font-size: 25px;
+    }
+    .totalprice-title, .totalprice-amount {
+        font-size: 20px;
+    }
+    .finish-button {
+        width: 70%;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1400px) {
+    .wrapper {
+        padding: 20px;
+    }
+    .order {
+        width: 90%;
+        padding: 25px;
+        gap: 10px;
+    }
+    .info {
+        flex-direction: row;
+    }
+    .client-info {
+        width: 60%;
+    }
+    .first-section{
+        flex-direction: column;
+        align-items: center;
+    }
+    .order-info {
+        width: 50%;
+        border-left: 2px solid #9ddf6b;
+        padding: 10px;
+    }
+    .avatar {
+        width: 220px;
+        height: 220px;
+    }
+    .avatar img {
+        width: 220px;
+        height: 220px;
+    }
+    .user-info-field {
+        font-size: 20px;
+        padding: 15px;
+    }
+    .order-title {
+        font-size: 28px;
+    }
+    .totalprice-title, .totalprice-amount {
+        font-size: 22px;
+    }
+    .finish-button {
+        width: 60%;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1401px) {
+    .wrapper {
+        padding: 20px;
+    }
+    .order {
+        width: 75%;
+        padding: 30px;
+        gap: 20px;
+    }
+    .info {
+        flex-direction: row;
+    }
+    .client-info {
+        width: 45%;
+    }
+    .order-info {
+        width: 50%;
+        border-left: 2px solid #9ddf6b;
+    }
+    .avatar {
+        width: 250px;
+        height: 250px;
+    }
+    .avatar img {
+        width: 250px;
+        height: 250px;
+    }
+    .user-info-field {
+        font-size: 20px;
+        padding: 20px;
+    }
+    .order-title {
+        font-size: 30px;
+    }
+    .totalprice-title, .totalprice-amount {
+        font-size: 25px;
+    }
+    .finish-button {
+        width: 40%;
+        padding: 20px;
+    }
 }
