@@ -84,6 +84,13 @@
     position: fixed;
 }
 
+.message {
+    font-family: "Manrope", sans-serif;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 30vh;
+}
+
 @media (max-width: 480px){
     .title {
         font-size: 25px;
